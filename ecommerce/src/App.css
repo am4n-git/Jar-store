@@ -1,3 +1,28 @@
+body{
+  background-color: #2b2b2b;
+}
 .App {
   text-align: center;
+}
+
+.navbar{
+  background-color: black;
+  color: white;
+  padding: 1rem;
+}
+.navbar-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-items{
+  display: flex;
+  text-decoration: none;
+}
+.nav-list{
+  list-style: none;
+  margin-left: 2rem;
+}
+.nav-list a{
+  text-decoration: none;
 }
