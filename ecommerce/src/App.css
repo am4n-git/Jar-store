@@ -1,13 +1,10 @@
 body{
-  background-color: #2b2b2b;
 }
 .App {
   text-align: center;
 }
 
 .navbar{
-  background-color: black;
-  color: white;
   padding: 1rem;
 }
 .navbar-content{
@@ -22,6 +19,8 @@ body{
 .nav-list{
   list-style: none;
   margin-left: 2rem;
+  padding: 0.2rem 0.7rem 0.3rem 0.7rem;
+  border-radius: 10px;
 }
 .nav-list a{
   text-decoration: none;
