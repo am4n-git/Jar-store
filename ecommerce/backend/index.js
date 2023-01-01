@@ -45,6 +45,16 @@ app.post('/product', (req, res) => {
   Watch.save().then(savedWatch => res.json(savedWatch)).catch(err => console.log(err))
 })
 
+// find product by id
+app.get('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    console.log(id)
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(400).json({ success: false, message: "product not found" })
+    }
+    res.json({ product })
+  });
 
 app.listen(3000, () => {
   console.log('server started');
