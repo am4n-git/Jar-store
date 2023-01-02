@@ -1,15 +1,25 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./Components/Navbar";
-import data from "./db";
+
 function App() {
-  console.log(data);
+  const [products, setProducts] = useState([]);
+  const baseUrl = "http://localhost:8000/product";
+  useEffect(() => {
+    axios.get(baseUrl).then((response) => {
+      setProducts(response.data.products);
+    });
+  }, []);
   return (
     <div className="App">
       <Navbar />
       <h1 className="text-3xl">Ecommerce</h1>{" "}
-      <FontAwesomeIcon icon="fa-solid fa-check-square" />
-      <h2>Cart</h2>
+      {products.map((item) => (
+        <li key={item._id}>
+          {item.name}- ₹{item.price}
+        </li>
+      ))}
     </div>
   );
 }
