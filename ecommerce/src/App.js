@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./Components/Navbar";
+import * as Mui from "@material-ui/core";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -16,9 +17,24 @@ function App() {
       <Navbar />
       <h1 className="text-3xl">Ecommerce</h1>{" "}
       {products.map((item) => (
-        <li key={item._id}>
-          {item.name}- ₹{item.price}
-        </li>
+        <div key={item._id}>
+          <Mui.Card>
+            <Mui.CardMedia
+              component="img"
+              height="10"
+              image="https://picsum.photos/"
+              alt="product image alt"
+            />
+            <Mui.CardContent>
+              <Mui.Typography gutterBottom variant="h5" component="div">
+                {item.name}
+              </Mui.Typography>
+              <Mui.Typography variant="body2" color="text.secondary">
+                {item.price}
+              </Mui.Typography>
+            </Mui.CardContent>
+          </Mui.Card>
+        </div>
       ))}
     </div>
   );
