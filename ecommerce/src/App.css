@@ -25,3 +25,17 @@ body{
 .nav-list a{
   text-decoration: none;
 }
+
+.cardContainer{
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 3rem;
+}
+.card{
+  /* height: 250px; */
+  width: 150px;
+  border-radius: 10px;
+}
