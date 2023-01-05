@@ -38,7 +38,9 @@ function App() {
         ""
       )}
       <div className={`main ${loading ? "blur" : ""}`}>
-        <h1 className="text-3xl">Ecommerce</h1>{" "}
+        <Mui.Typography color="secondary" variant="h3" gutterBottom>
+          Products
+        </Mui.Typography>
         {products.map((item) => (
           <div key={item._id} className="cardContainer">
             <Mui.Card className="card">
