@@ -6,15 +6,37 @@ import * as Mui from "@material-ui/core";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const baseUrl = "https://jar-store-server.vercel.app/products";
   useEffect(() => {
-    axios.get(baseUrl).then((response) => {
-      setProducts(response.data.products);
-    });
+    setLoading(true);
+    axios
+      .get(baseUrl)
+      .then((response) => {
+        setProducts(response.data.products);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        setErrorMsg(error.message);
+        console.log("server error", error);
+        setShowError(true);
+      });
   }, []);
   return (
     <div className="App">
       <Navbar />
+      {loading ? <div className="loader"></div> : ""}
+      {showError ? (
+        <h2>
+          Something broke, try again later !! <br />
+          {errorMsg}{" "}
+        </h2>
+      ) : (
+        ""
+      )}
       <h1 className="text-3xl">Ecommerce</h1>{" "}
       {products.map((item) => (
         <div key={item._id} className="cardContainer">
