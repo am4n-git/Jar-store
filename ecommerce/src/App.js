@@ -37,31 +37,33 @@ function App() {
       ) : (
         ""
       )}
-      <h1 className="text-3xl">Ecommerce</h1>{" "}
-      {products.map((item) => (
-        <div key={item._id} className="cardContainer">
-          <Mui.Card className="card">
-            <Mui.CardMedia
-              component="img"
-              height="20"
-              width="20"
-              image="https://picsum.photos/20"
-              alt="product image alt"
-            />
-            <Mui.CardContent>
-              <Mui.Typography gutterBottom variant="h5" component="div">
-                {item.name}
-              </Mui.Typography>
-              <Mui.Typography variant="body2">{item.price}</Mui.Typography>
-            </Mui.CardContent>
-            <Mui.CardActions>
-              <Mui.Button size="small" color="primary">
-                Add To Cart
-              </Mui.Button>
-            </Mui.CardActions>
-          </Mui.Card>
-        </div>
-      ))}
+      <div className={`main ${loading ? "blur" : ""}`}>
+        <h1 className="text-3xl">Ecommerce</h1>{" "}
+        {products.map((item) => (
+          <div key={item._id} className="cardContainer">
+            <Mui.Card className="card">
+              <Mui.CardMedia
+                component="img"
+                height="20"
+                width="20"
+                image="https://picsum.photos/20"
+                alt="product image alt"
+              />
+              <Mui.CardContent>
+                <Mui.Typography gutterBottom variant="h5" component="div">
+                  {item.name}
+                </Mui.Typography>
+                <Mui.Typography variant="body2">{item.price}</Mui.Typography>
+              </Mui.CardContent>
+              <Mui.CardActions>
+                <Mui.Button size="small" color="primary">
+                  Add To Cart
+                </Mui.Button>
+              </Mui.CardActions>
+            </Mui.Card>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
