@@ -6,7 +6,7 @@ import * as Mui from "@material-ui/core";
 
 function App() {
   const [products, setProducts] = useState([]);
-  const baseUrl = "http://localhost:8000/product";
+  const baseUrl = "https://jar-store-server.vercel.app/products";
   useEffect(() => {
     axios.get(baseUrl).then((response) => {
       setProducts(response.data.products);
