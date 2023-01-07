@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./Components/Navbar";
-import * as Mui from "@material-ui/core";
+import * as Mui from "@mui/material";
 
 function App() {
   const [products, setProducts] = useState([]);
