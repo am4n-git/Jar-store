@@ -30,6 +30,7 @@ body{
 }
 /* navbard */
 .navbar{
+  background-color: #3498db;
   padding: 1rem;
 }
 .navbar-content{
