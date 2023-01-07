@@ -2,6 +2,9 @@ import * as Mui from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -9,6 +12,7 @@ function HomePage() {
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const baseUrl = "https://jar-store-server.vercel.app/products";
+
   useEffect(() => {
     setLoading(true);
     axios
@@ -41,30 +45,45 @@ function HomePage() {
       <div className={`${loading ? "blur" : ""}`}>
         {products.map((item) => (
           <div key={item._id} className="cardContainer">
-            <Mui.Card sx={{ maxWidth: 500 }} className="card">
+            <Mui.Card sx={{ maxWidth: 345 }} className="card">
               <Mui.CardActionArea>
+                <Mui.CardHeader
+                  action={
+                    <Mui.IconButton aria-label="settings">
+                      <MoreVertIcon />
+                    </Mui.IconButton>
+                  }
+                  title={item.name}
+                  subheader={`₹${item.price}`}
+                />
                 <Mui.CardMedia
                   component="img"
-                  height="20"
-                  width="20"
-                  image="https://picsum.photos/20"
+                  height="194"
+                  image={item.image}
                   alt="product image alt"
                 />
                 <Mui.CardContent>
-                  <Mui.Typography gutterBottom variant="h5" component="div">
+                  {/* <Mui.Typography gutterBottom variant="h5" component="div">
                     {item.name}
                   </Mui.Typography>
                   <Mui.Typography gutterBottom variant="h6" component="div">
                     {item.price}
-                  </Mui.Typography>
+                  </Mui.Typography> */}
                   <Mui.Typography variant="body2">
-                    Some product description will come here
+                    Some product description will come here and lets see how it
+                    is added in tihs spacoiajc kasdj askjd iqod sjdn jkasf kjafs
                   </Mui.Typography>
                 </Mui.CardContent>
               </Mui.CardActionArea>
               <Mui.CardActions>
-                <Mui.Button size="small" color="primary">
-                  Add To Cart
+                <Mui.Button
+                  variant="contained"
+                  startIcon={<AddShoppingCartIcon />}
+                >
+                  Add
+                </Mui.Button>
+                <Mui.Button variant="outlined" endIcon={<DeleteIcon />}>
+                  Remove
                 </Mui.Button>
               </Mui.CardActions>
             </Mui.Card>
