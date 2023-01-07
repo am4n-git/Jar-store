@@ -1,6 +1,7 @@
 import * as Mui from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -30,30 +31,37 @@ function HomePage() {
         <h2>
           Something broke, try again later !! <br />
           {errorMsg}{" "}
+          <Mui.Link href="/" color="#ababab">
+            <RefreshIcon />
+          </Mui.Link>
         </h2>
       ) : (
         ""
       )}
-      <div className={`main ${loading ? "blur" : ""}`}>
-        <Mui.Typography color="secondary" variant="h3" gutterBottom>
-          Products
-        </Mui.Typography>
+      <div className={`${loading ? "blur" : ""}`}>
         {products.map((item) => (
           <div key={item._id} className="cardContainer">
-            <Mui.Card className="card">
-              <Mui.CardMedia
-                component="img"
-                height="20"
-                width="20"
-                image="https://picsum.photos/20"
-                alt="product image alt"
-              />
-              <Mui.CardContent>
-                <Mui.Typography gutterBottom variant="h5" component="div">
-                  {item.name}
-                </Mui.Typography>
-                <Mui.Typography variant="body2">{item.price}</Mui.Typography>
-              </Mui.CardContent>
+            <Mui.Card sx={{ maxWidth: 500 }} className="card">
+              <Mui.CardActionArea>
+                <Mui.CardMedia
+                  component="img"
+                  height="20"
+                  width="20"
+                  image="https://picsum.photos/20"
+                  alt="product image alt"
+                />
+                <Mui.CardContent>
+                  <Mui.Typography gutterBottom variant="h5" component="div">
+                    {item.name}
+                  </Mui.Typography>
+                  <Mui.Typography gutterBottom variant="h6" component="div">
+                    {item.price}
+                  </Mui.Typography>
+                  <Mui.Typography variant="body2">
+                    Some product description will come here
+                  </Mui.Typography>
+                </Mui.CardContent>
+              </Mui.CardActionArea>
               <Mui.CardActions>
                 <Mui.Button size="small" color="primary">
                   Add To Cart
