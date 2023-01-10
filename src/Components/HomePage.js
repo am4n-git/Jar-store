@@ -60,7 +60,8 @@ function HomePage() {
                   component="img"
                   height="194"
                   image={item.image}
-                  alt="product image alt"
+                  alt={item.name}
+                  style={{ objectFit: "contain" }}
                 />
                 <Mui.CardContent>
                   {/* <Mui.Typography gutterBottom variant="h5" component="div">
