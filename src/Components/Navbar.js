@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
-import { CartContext } from "../Context/cart-context";
+import { useCart } from "../Context/cart-context";
 
 function Navbar() {
-  const { items, logger } = useContext(CartContext);
+  const { items } = useCart();
   return (
     <nav className="navbar">
       <div className="navbar-content">
@@ -18,7 +18,7 @@ function Navbar() {
 
           <li>
             <Link className="nav-list bg-sky-500 hover:bg-sky-700" to="/cart">
-              Cart <span onClick={logger}>{items} </span>qty
+              Cart <span>{items} </span>qty
             </Link>
           </li>
         </ul>

@@ -5,6 +5,7 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useCart } from "../Context/cart-context";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,10 @@ function HomePage() {
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const baseUrl = "https://jar-store-server.vercel.app/products";
-
+  const { setItems } = useCart();
+  function addItems() {
+    setItems((items) => items + 1);
+  }
   useEffect(() => {
     setLoading(true);
     axios
@@ -80,6 +84,7 @@ function HomePage() {
                 <Mui.Button
                   variant="contained"
                   startIcon={<AddShoppingCartIcon />}
+                  onClick={addItems}
                 >
                   Add
                 </Mui.Button>
