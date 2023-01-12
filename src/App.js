@@ -5,7 +5,6 @@ import HomePage from "./Components/HomePage";
 import Cart from "./Components/Cart";
 import Login from "./Components/Login";
 
-// "@material-ui/core": "^4.12.4"
 function App() {
   return (
     <div className="App">
