@@ -4,17 +4,26 @@ import Navbar from "./Components/Navbar";
 import HomePage from "./Components/HomePage";
 import Cart from "./Components/Cart";
 import Login from "./Components/Login";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Paper } from "@mui/material";
+import { useDarkMode } from "./Context/theme-context";
 
-// "@material-ui/core": "^4.12.4"
 function App() {
+  const { darkMode } = useDarkMode();
+  const darkTheme = createTheme({
+  palette: {
+    mode: darkMode ? 'dark' : 'light',
+  },
+});
   return (
+    <ThemeProvider theme={darkTheme}>
+    <Paper style={{height:"100%"}}>
     <div className="App">
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
-
 
         {/* If no route matches */}
         <Route
@@ -27,6 +36,10 @@ function App() {
         />
       </Routes>
     </div>
+    </Paper>
+
+    </ThemeProvider>
+
   );
 }
 

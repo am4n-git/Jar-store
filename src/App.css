@@ -4,7 +4,6 @@ body{
 }
 a{
   text-decoration: none;
-  color:black;
 }
 .active{
   color: black;
@@ -41,7 +40,7 @@ a{
 
 /* Home Page Products Container */
 .home-container{
-  margin-top: 2rem;
+  transition: 1s ease-in-out;
   text-align: center;
 }
 /* loader */
