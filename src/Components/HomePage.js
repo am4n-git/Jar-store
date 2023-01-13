@@ -1,22 +1,27 @@
-import * as Mui from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+// Material UI
+import * as Mui from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
+// Context Import
 import { useCart } from "../Context/cart-context";
+import { useTheme } from "../Context/theme-context";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const baseUrl = "https://jar-store-server.vercel.app/products";
-  const { setItems } = useCart();
-  function addItems() {
-    setItems((items) => items + 1);
-  }
+  // Server url
+  const baseUrl = process.env.REACT_APP_SERVER_URL;
+  // Context functions
+  const { theme } = useTheme();
+  const { addToCart } = useCart();
+
+  // fetch all products intially
   useEffect(() => {
     setLoading(true);
     axios
@@ -33,7 +38,10 @@ function HomePage() {
       });
   }, []);
   return (
-    <div className="home-container">
+    <div
+      className="home-container"
+      style={{ backgroundColor: theme === "light" ? "white" : "#0f0f0f" }}
+    >
       {loading ? <div className="loader"></div> : ""}
       {showError ? (
         <h2>
@@ -84,7 +92,7 @@ function HomePage() {
                 <Mui.Button
                   variant="contained"
                   startIcon={<AddShoppingCartIcon />}
-                  onClick={addItems}
+                  onClick={addToCart}
                 >
                   Add
                 </Mui.Button>
