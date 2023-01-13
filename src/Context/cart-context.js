@@ -13,8 +13,13 @@ const CartProvider = ({ children, value }) => {
   function addToCart() {
     setItems((items) => items + 1);
   }
+  function removeFromCart() {
+    if (items > 0) {
+      setItems((items) => items - 1);
+    }
+  }
   return (
-    <CartContext.Provider value={{ items, addToCart }}>
+    <CartContext.Provider value={{ items, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );

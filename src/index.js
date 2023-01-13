@@ -1,20 +1,18 @@
 import { StrictMode } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { CartProvider } from "./Context/cart-context";
-import { ThemeProvider } from "./Context/theme-context";
-const rootElement = document.getElementById("root");
-
-ReactDOM.render(
+import { DarkThemeProvider } from "./Context/theme-context";
+const root = createRoot(document.getElementById("root"));
+root.render(
   <StrictMode>
-    <ThemeProvider>
+    <DarkThemeProvider>
       <CartProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </CartProvider>
-    </ThemeProvider>
-  </StrictMode>,
-  rootElement
+    </DarkThemeProvider>
+  </StrictMode>
 );

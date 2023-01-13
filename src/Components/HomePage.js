@@ -3,12 +3,11 @@ import axios from "axios";
 // Material UI
 import * as Mui from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 // Context Import
 import { useCart } from "../Context/cart-context";
-import { useTheme } from "../Context/theme-context";
+import { useDarkMode } from "../Context/theme-context";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -18,8 +17,8 @@ function HomePage() {
   // Server url
   const baseUrl = process.env.REACT_APP_SERVER_URL;
   // Context functions
-  const { theme } = useTheme();
   const { addToCart } = useCart();
+  const { removeFromCart } = useCart();
 
   // fetch all products intially
   useEffect(() => {
@@ -38,10 +37,7 @@ function HomePage() {
       });
   }, []);
   return (
-    <div
-      className="home-container"
-      style={{ backgroundColor: theme === "light" ? "white" : "#0f0f0f" }}
-    >
+    <div className="home-container">
       {loading ? <div className="loader"></div> : ""}
       {showError ? (
         <h2>
@@ -59,15 +55,6 @@ function HomePage() {
           <div key={item._id} className="cardContainer">
             <Mui.Card sx={{ maxWidth: 345 }} className="card">
               <Mui.CardActionArea>
-                <Mui.CardHeader
-                  action={
-                    <Mui.IconButton aria-label="settings">
-                      <MoreVertIcon />
-                    </Mui.IconButton>
-                  }
-                  title={item.name}
-                  subheader={`₹${item.price}`}
-                />
                 <Mui.CardMedia
                   component="img"
                   height="194"
@@ -96,7 +83,11 @@ function HomePage() {
                 >
                   Add
                 </Mui.Button>
-                <Mui.Button variant="outlined" endIcon={<DeleteIcon />}>
+                <Mui.Button
+                  variant="outlined"
+                  endIcon={<DeleteIcon />}
+                  onClick={removeFromCart}
+                >
                   Remove
                 </Mui.Button>
               </Mui.CardActions>
