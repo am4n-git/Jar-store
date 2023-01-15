@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import axios from "axios";
 // Material UI
 import * as Mui from "@mui/material";
@@ -10,6 +10,18 @@ import { useCart } from "../Context/cart-context";
 import { useDarkMode } from "../Context/theme-context";
 
 function HomePage() {
+  function reducerFunc(state, action) {
+    switch (action.type) {
+      case "increment":
+        return { ...state, total: state.total + action.payload };
+      case "decrement":
+        return { ...state, total: state.total - action.payload };
+      default:
+        console.log("wron action");
+    }
+  }
+  const [state, dispatch] = useReducer(reducerFunc, { total: 0 });
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -38,6 +50,7 @@ function HomePage() {
   }, []);
   return (
     <div className="home-container">
+      <h1>{state.total}</h1>
       {loading ? <div className="loader"></div> : ""}
       {showError ? (
         <h2>
@@ -63,12 +76,12 @@ function HomePage() {
                   style={{ objectFit: "contain" }}
                 />
                 <Mui.CardContent>
-                  {/* <Mui.Typography gutterBottom variant="h5" component="div">
+                  <Mui.Typography gutterBottom variant="h5" component="div">
                     {item.name}
                   </Mui.Typography>
                   <Mui.Typography gutterBottom variant="h6" component="div">
-                    {item.price}
-                  </Mui.Typography> */}
+                    ₹{item.price}
+                  </Mui.Typography>
                   <Mui.Typography variant="body2">
                     Some product description will come here and lets see how it
                     is added in tihs spacoiajc kasdj askjd iqod sjdn jkasf kjafs
@@ -79,14 +92,22 @@ function HomePage() {
                 <Mui.Button
                   variant="contained"
                   startIcon={<AddShoppingCartIcon />}
-                  onClick={addToCart}
+                  onClick={() => {
+                    dispatch({ type: "increment", payload: item.price });
+                    addToCart();
+                  }}
                 >
                   Add
                 </Mui.Button>
                 <Mui.Button
                   variant="outlined"
                   endIcon={<DeleteIcon />}
-                  onClick={removeFromCart}
+                  onClick={() => {
+                    removeFromCart();
+                    if (state.total >= item.price) {
+                      dispatch({ type: "decrement", payload: item.price });
+                    }
+                  }}
                 >
                   Remove
                 </Mui.Button>

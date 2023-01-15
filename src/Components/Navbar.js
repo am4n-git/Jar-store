@@ -104,7 +104,7 @@ function Navbar() {
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Link to="/">
-            <Button>BuyJar</Button>
+            <Typography textAlign="center">BuyJar</Typography>
           </Link>
 
           {/* MOBILE VIEW */}
@@ -166,17 +166,13 @@ function Navbar() {
           >
             <Box sx={{ display: { md: "flex" } }}>
               <Link to="/cart">
-                <Button>
-                  <Badge badgeContent={items} color="error">
-                    <CartIcon />
-                  </Badge>
-                </Button>
-              </Link>
-              <Button>
-                <Badge badgeContent={5} sx={{}} color="error">
-                  <NotificationsIcon />
+                <Badge badgeContent={items} color="error">
+                  <CartIcon />
                 </Badge>
-              </Button>
+              </Link>
+              <Badge badgeContent={5} sx={{}} color="error">
+                <NotificationsIcon />
+              </Badge>
             </Box>
 
             <MoreIcon
