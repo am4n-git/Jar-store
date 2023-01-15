@@ -2,7 +2,6 @@ import React from "react";
 import { useSubTotal } from "../Context/cart-context";
 function Cart() {
   const { state } = useSubTotal();
-  console.log(state.items);
   return (
     <div>
       {state.total > 0 ? (

@@ -7,6 +7,7 @@ const defaultContextValue = {
 const CartContext = createContext(defaultContextValue);
 const CartProvider = ({ children, value }) => {
   const [items, setItems] = useState(0);
+  document.title = `Jar Store | ${items} items in cart`;
   function addToCart() {
     setItems((items) => items + 1);
   }
@@ -36,7 +37,7 @@ const SubTotalProvider = ({ children, value }) => {
       case "remove_from_cart":
         return {
           ...state,
-          items: state.items.concat(action.payload),
+          items: state.items.filter((item) => item._id !== action.payload.id),
           total: state.total - action.payload.price,
         };
       default:

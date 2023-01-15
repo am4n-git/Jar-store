@@ -20,6 +20,19 @@ function HomePage() {
   const { removeFromCart } = useCart();
   const { state, dispatch } = useSubTotal();
 
+  // remove from cart
+  function removeProduct(id) {
+    const item = state.items.find((item) => item._id === id);
+    if (!item) return;
+    dispatch({
+      type: "remove_from_cart",
+      payload: {
+        id: item._id,
+        price: item.price,
+      },
+    });
+  }
+
   // fetch all products intially
   useEffect(() => {
     setLoading(true);
@@ -91,13 +104,8 @@ function HomePage() {
                   variant="outlined"
                   endIcon={<DeleteIcon />}
                   onClick={() => {
+                    removeProduct(item._id);
                     removeFromCart();
-                    if (state.total >= item.price) {
-                      dispatch({
-                        type: "remove_from_cart",
-                        payload: item,
-                      });
-                    }
                   }}
                 >
                   Remove
