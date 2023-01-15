@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 // Material UI
 import * as Mui from "@mui/material";
@@ -6,22 +6,9 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 // Context Import
-import { useCart } from "../Context/cart-context";
-import { useDarkMode } from "../Context/theme-context";
+import { useCart, useSubTotal } from "../Context/cart-context";
 
 function HomePage() {
-  function reducerFunc(state, action) {
-    switch (action.type) {
-      case "increment":
-        return { ...state, total: state.total + action.payload };
-      case "decrement":
-        return { ...state, total: state.total - action.payload };
-      default:
-        console.log("wron action");
-    }
-  }
-  const [state, dispatch] = useReducer(reducerFunc, { total: 0 });
-
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -31,6 +18,7 @@ function HomePage() {
   // Context functions
   const { addToCart } = useCart();
   const { removeFromCart } = useCart();
+  const { state, dispatch } = useSubTotal();
 
   // fetch all products intially
   useEffect(() => {
@@ -64,7 +52,7 @@ function HomePage() {
         ""
       )}
       <div className={`${loading ? "blur" : ""}`}>
-        {products.map((item) => (
+        {products.map((item, index) => (
           <div key={item._id} className="cardContainer">
             <Mui.Card sx={{ maxWidth: 345 }} className="card">
               <Mui.CardActionArea>
@@ -93,7 +81,7 @@ function HomePage() {
                   variant="contained"
                   startIcon={<AddShoppingCartIcon />}
                   onClick={() => {
-                    dispatch({ type: "increment", payload: item.price });
+                    dispatch({ type: "add_to_cart", payload: item });
                     addToCart();
                   }}
                 >
@@ -105,7 +93,10 @@ function HomePage() {
                   onClick={() => {
                     removeFromCart();
                     if (state.total >= item.price) {
-                      dispatch({ type: "decrement", payload: item.price });
+                      dispatch({
+                        type: "remove_from_cart",
+                        payload: item,
+                      });
                     }
                   }}
                 >
