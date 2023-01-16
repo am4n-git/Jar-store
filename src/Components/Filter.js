@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import Slider from "@mui/material/Slider";
-
+import { useProducts } from "../Context/product-data-context";
 function valuetext(value) {
   return `${value}`;
 }
 
 function Filter() {
+  const { products, setProducts, loading, showError, errorMsg } = useProducts();
   const [value, setValue] = useState([20, 37]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  //   setProducts((products) => products.sort((a, b) => b.price - a.price));
   return (
     <div>
       <Slider
