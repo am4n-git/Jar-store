@@ -6,7 +6,7 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 // Context Import
-import { useCart, useSubTotal } from "../Context/cart-context";
+import { useCart } from "../Context/cart-context";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -16,13 +16,11 @@ function HomePage() {
   // Server url
   const baseUrl = process.env.REACT_APP_SERVER_URL;
   // Context functions
-  const { addToCart } = useCart();
-  const { removeFromCart } = useCart();
-  const { state, dispatch } = useSubTotal();
+  const { cart, dispatch } = useCart();
 
   // remove from cart
   function removeProduct(id) {
-    const item = state.items.find((item) => item._id === id);
+    const item = cart.items.find((item) => item._id === id);
     if (!item) return;
     dispatch({
       type: "remove_from_cart",
@@ -51,7 +49,6 @@ function HomePage() {
   }, []);
   return (
     <div className="home-container">
-      <h1>{state.total}</h1>
       {loading ? <div className="loader"></div> : ""}
       {showError ? (
         <h2>
@@ -95,7 +92,6 @@ function HomePage() {
                   startIcon={<AddShoppingCartIcon />}
                   onClick={() => {
                     dispatch({ type: "add_to_cart", payload: item });
-                    addToCart();
                   }}
                 >
                   Add
@@ -105,7 +101,6 @@ function HomePage() {
                   endIcon={<DeleteIcon />}
                   onClick={() => {
                     removeProduct(item._id);
-                    removeFromCart();
                   }}
                 >
                   Remove
