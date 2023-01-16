@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 // Material UI
 import * as Mui from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
@@ -7,17 +6,13 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 // Context Import
 import { useCart } from "../Context/cart-context";
+import { useProducts } from "../Context/product-data-context";
+import Filter from "./Filter";
 
 function HomePage() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [showError, setShowError] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-  // Server url
-  const baseUrl = process.env.REACT_APP_SERVER_URL;
   // Context functions
   const { cart, dispatch } = useCart();
-
+  const { products, loading, showError, errorMsg } = useProducts();
   // remove from cart
   function removeProduct(id) {
     const item = cart.items.find((item) => item._id === id);
@@ -31,22 +26,6 @@ function HomePage() {
     });
   }
 
-  // fetch all products intially
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(baseUrl)
-      .then((response) => {
-        setProducts(response.data.products);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
-        setErrorMsg(error.message);
-        console.log("server error", error);
-        setShowError(true);
-      });
-  }, []);
   return (
     <div className="home-container">
       {loading ? <div className="loader"></div> : ""}
@@ -62,6 +41,7 @@ function HomePage() {
         ""
       )}
       <div className={`${loading ? "blur" : ""}`}>
+        <Filter />
         {products.map((item, index) => (
           <div key={item._id} className="cardContainer">
             <Mui.Card sx={{ maxWidth: 345 }} className="card">

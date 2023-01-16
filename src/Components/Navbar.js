@@ -40,7 +40,7 @@ function Navbar() {
     "&:hover": {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    width: "100px",
+    width: "10%",
     marginRight: theme.spacing(2),
     marginLeft: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
