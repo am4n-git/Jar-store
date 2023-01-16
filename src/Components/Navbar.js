@@ -9,9 +9,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
@@ -22,19 +20,12 @@ import CartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 function Navbar() {
-  const { items } = useCart();
+  const { cart } = useCart();
   const { changeTheme } = useDarkMode();
-  const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -49,8 +40,9 @@ function Navbar() {
     "&:hover": {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
+    width: "100px",
     marginRight: theme.spacing(2),
-    marginLeft: 0,
+    marginLeft: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
       width: "auto",
@@ -81,108 +73,58 @@ function Navbar() {
     },
   }));
   return (
-    // <nav className="navbar">
-    //   <div className="navbar-content">
-    //     <Link to="/">Home</Link>
-    //     <ul className="navbar-items">
-    //       <li>
-    //         <Link className="nav-list bg-sky-500 hover:bg-sky-700" to="/login">
-    //           Login
-    //         </Link>
-    //       </li>
-
-    //       <li>
-    //         <Link className="nav-list bg-sky-500 hover:bg-sky-700" to="/cart">
-    //           Cart <span>{items} </span>qty
-    //         </Link>
-    //       </li>
-    //     </ul>
-    //   </div>
-    // </nav>
     <AppBar position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Link to="/">
-            <Button>BuyJar</Button>
-          </Link>
-
-          {/* MOBILE VIEW */}
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            {/* Hamburger Menu */}
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
+            <IconButton aria-label="Home Page" color="red">
+              <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+              <Typography textAlign="center">BuyJar</Typography>
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Products</Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
+          </Link>
           <Search sx={{ display: { xs: "flex" } }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
           </Search>
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              Products
-            </Button>
-          </Box>
           <Box
             justifyContent="flex-end"
             sx={{ flexGrow: 1, alignItems: "center", display: { xs: "flex" } }}
           >
             <Box sx={{ display: { md: "flex" } }}>
               <Link to="/cart">
-                <Button>
-                  <Badge badgeContent={items} color="error">
+                <IconButton
+                  size="large"
+                  aria-label="display more actions"
+                  color="white"
+                >
+                  <Badge badgeContent={cart.items.length} color="error">
                     <CartIcon />
                   </Badge>
-                </Button>
+                </IconButton>
               </Link>
-              <Button>
+              <IconButton
+                size="large"
+                aria-label="display more actions"
+                color="white"
+              >
                 <Badge badgeContent={5} sx={{}} color="error">
                   <NotificationsIcon />
                 </Badge>
-              </Button>
+              </IconButton>
             </Box>
-
-            <MoreIcon
-              onClick={handleOpenUserMenu}
-              sx={{ display: {}, pl: 3 }}
-            ></MoreIcon>
+            <IconButton
+              size="large"
+              aria-label="display more actions"
+              edge="end"
+              color="white"
+            >
+              <MoreIcon onClick={handleOpenUserMenu}></MoreIcon>
+            </IconButton>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

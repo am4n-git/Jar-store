@@ -7,7 +7,6 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 // Context Import
 import { useCart } from "../Context/cart-context";
-import { useDarkMode } from "../Context/theme-context";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -17,8 +16,20 @@ function HomePage() {
   // Server url
   const baseUrl = process.env.REACT_APP_SERVER_URL;
   // Context functions
-  const { addToCart } = useCart();
-  const { removeFromCart } = useCart();
+  const { cart, dispatch } = useCart();
+
+  // remove from cart
+  function removeProduct(id) {
+    const item = cart.items.find((item) => item._id === id);
+    if (!item) return;
+    dispatch({
+      type: "remove_from_cart",
+      payload: {
+        id: item._id,
+        price: item.price,
+      },
+    });
+  }
 
   // fetch all products intially
   useEffect(() => {
@@ -51,7 +62,7 @@ function HomePage() {
         ""
       )}
       <div className={`${loading ? "blur" : ""}`}>
-        {products.map((item) => (
+        {products.map((item, index) => (
           <div key={item._id} className="cardContainer">
             <Mui.Card sx={{ maxWidth: 345 }} className="card">
               <Mui.CardActionArea>
@@ -63,12 +74,12 @@ function HomePage() {
                   style={{ objectFit: "contain" }}
                 />
                 <Mui.CardContent>
-                  {/* <Mui.Typography gutterBottom variant="h5" component="div">
+                  <Mui.Typography gutterBottom variant="h5" component="div">
                     {item.name}
                   </Mui.Typography>
                   <Mui.Typography gutterBottom variant="h6" component="div">
-                    {item.price}
-                  </Mui.Typography> */}
+                    ₹{item.price}
+                  </Mui.Typography>
                   <Mui.Typography variant="body2">
                     Some product description will come here and lets see how it
                     is added in tihs spacoiajc kasdj askjd iqod sjdn jkasf kjafs
@@ -79,14 +90,18 @@ function HomePage() {
                 <Mui.Button
                   variant="contained"
                   startIcon={<AddShoppingCartIcon />}
-                  onClick={addToCart}
+                  onClick={() => {
+                    dispatch({ type: "add_to_cart", payload: item });
+                  }}
                 >
                   Add
                 </Mui.Button>
                 <Mui.Button
                   variant="outlined"
                   endIcon={<DeleteIcon />}
-                  onClick={removeFromCart}
+                  onClick={() => {
+                    removeProduct(item._id);
+                  }}
                 >
                   Remove
                 </Mui.Button>
