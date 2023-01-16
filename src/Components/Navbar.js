@@ -122,8 +122,9 @@ function Navbar() {
               aria-label="display more actions"
               edge="end"
               color="white"
+              onClick={handleOpenUserMenu}
             >
-              <MoreIcon onClick={handleOpenUserMenu}></MoreIcon>
+              <MoreIcon></MoreIcon>
             </IconButton>
             <Menu
               sx={{ mt: "45px" }}
