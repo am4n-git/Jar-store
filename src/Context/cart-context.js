@@ -1,35 +1,30 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useState } from "react";
 
-const CartContext = createContext({});
+const defaultContextValue = {
+  items: 9,
+  logger: () => {
+    console.log("add to cart called");
+  },
+};
+const CartContext = createContext({ items: 4 });
+
 const CartProvider = ({ children, value }) => {
-  function cartHandler(cart, action) {
-    switch (action.type) {
-      case "add_to_cart":
-        return {
-          ...cart,
-          items: cart.items.concat(action.payload),
-          total: cart.total + action.payload.price,
-        };
-      case "remove_from_cart":
-        return {
-          ...cart,
-          items: cart.items.filter((item) => item._id !== action.payload.id),
-          total: cart.total - action.payload.price,
-        };
-      default:
-        return cart;
+  const [items, setItems] = useState(0);
+  function addToCart() {
+    setItems((items) => items + 1);
+  }
+  function removeFromCart() {
+    if (items > 0) {
+      setItems((items) => items - 1);
     }
   }
-  const [cart, dispatch] = useReducer(cartHandler, {
-    items: [],
-    total: 0,
-  });
   return (
-    <CartContext.Provider value={{ cart, dispatch }}>
+    <CartContext.Provider value={{ items, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );
 };
 
 const useCart = () => useContext(CartContext);
+
 export { useCart, CartProvider };
