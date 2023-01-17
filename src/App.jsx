@@ -25,7 +25,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/product/:productId" element={<ProductDetail />} />
+            <Route path="/product/:name/:productId" element={<ProductDetail />} />
 
             {/* If no route matches */}
             <Route
