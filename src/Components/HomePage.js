@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 // Material UI
 import * as Mui from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
@@ -45,27 +47,31 @@ function HomePage() {
         {products.map((item, index) => (
           <div key={item._id} className="cardContainer">
             <Mui.Card sx={{ maxWidth: 345 }} className="card">
-              <Mui.CardActionArea>
-                <Mui.CardMedia
-                  component="img"
-                  height="194"
-                  image={item.image}
-                  alt={item.name}
-                  style={{ objectFit: "contain" }}
-                />
-                <Mui.CardContent>
-                  <Mui.Typography gutterBottom variant="h5" component="div">
-                    {item.name}
-                  </Mui.Typography>
-                  <Mui.Typography gutterBottom variant="h6" component="div">
-                    ₹{item.price}
-                  </Mui.Typography>
-                  <Mui.Typography variant="body2">
-                    Some product description will come here and lets see how it
-                    is added in tihs spacoiajc kasdj askjd iqod sjdn jkasf kjafs
-                  </Mui.Typography>
-                </Mui.CardContent>
-              </Mui.CardActionArea>
+              <Link to={`/product/${item._id}`}>
+                <Mui.CardActionArea>
+                  <Mui.CardMedia
+                    component="img"
+                    height="194"
+                    image={item.image}
+                    alt={item.name}
+                    style={{ objectFit: "contain" }}
+                  />
+                  <Mui.CardContent>
+                    <Mui.Typography gutterBottom variant="h5" component="div">
+                      {item.name}
+                    </Mui.Typography>
+                    <Mui.Typography gutterBottom variant="h6" component="div">
+                      ₹{item.price}
+                    </Mui.Typography>
+                    <Mui.Typography variant="body2">
+                      Some product description will come here and lets see how
+                      it is added in tihs spacoiajc kasdj askjd iqod sjdn jkasf
+                      kjafs
+                    </Mui.Typography>
+                  </Mui.CardContent>
+                </Mui.CardActionArea>
+              </Link>
+
               <Mui.CardActions>
                 <Mui.Button
                   variant="contained"

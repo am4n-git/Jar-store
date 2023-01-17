@@ -8,14 +8,14 @@ import { DarkThemeProvider } from "./Context/theme-context";
 const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
-    <DarkThemeProvider>
-      <ProductDataProvider>
-        <CartProvider>
-          <BrowserRouter>
+    <BrowserRouter>
+      <DarkThemeProvider>
+        <ProductDataProvider>
+          <CartProvider>
             <App />
-          </BrowserRouter>
-        </CartProvider>
-      </ProductDataProvider>
-    </DarkThemeProvider>
+          </CartProvider>
+        </ProductDataProvider>
+      </DarkThemeProvider>
+    </BrowserRouter>
   </StrictMode>
 );
