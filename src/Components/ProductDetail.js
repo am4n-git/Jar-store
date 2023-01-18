@@ -7,7 +7,8 @@ function ProductDetail() {
   const product = products.find((item) => item._id === productId);
   return (
     <div>
-      ProductDetail {productId} {product.name}
+      ProductDetails- <br /> {product.name} ₹{product.price} <br />
+      <img src={product.image} alt="" />
     </div>
   );
 }
