@@ -3,12 +3,14 @@ import * as Mui from "@mui/material";
 import ArrowForwardIosTwoToneIcon from "@mui/icons-material/ArrowForwardIosTwoTone";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/auth-context";
 function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useAuth();
   function handleLogin() {
     if (password === "1234") {
-      navigate("/");
+      setIsLoggedIn(true);
     }
   }
   return (

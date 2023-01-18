@@ -10,7 +10,6 @@ import { useDarkMode } from "./Context/theme-context";
 import ProductDetail from "./Components/ProductDetail";
 import Account from "./Components/Account";
 import RequiresAuth from "./Components/RequiresAuth";
-
 function App() {
   const { darkMode } = useDarkMode();
   const darkTheme = createTheme({
@@ -30,7 +29,7 @@ function App() {
             <Route
               path="/account"
               element={
-                <RequiresAuth login={false}>
+                <RequiresAuth>
                   <Account />
                 </RequiresAuth>
               }
