@@ -147,9 +147,11 @@ function Navbar() {
                   <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
               </Link>
-              <MenuItem>
-                <Typography textAlign="center">Account</Typography>
-              </MenuItem>
+              <Link to="/account">
+                <MenuItem>
+                  <Typography textAlign="center">Account</Typography>
+                </MenuItem>
+              </Link>
               <MenuItem
                 onClick={() => {
                   changeTheme();

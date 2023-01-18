@@ -8,6 +8,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Paper } from "@mui/material";
 import { useDarkMode } from "./Context/theme-context";
 import ProductDetail from "./Components/ProductDetail";
+import Account from "./Components/Account";
+import RequiresAuth from "./Components/RequiresAuth";
 
 function App() {
   const { darkMode } = useDarkMode();
@@ -25,7 +27,18 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/product/:name/:productId" element={<ProductDetail />} />
+            <Route
+              path="/account"
+              element={
+                <RequiresAuth login={false}>
+                  <Account />
+                </RequiresAuth>
+              }
+            />
+            <Route
+              path="/product/:name/:productId"
+              element={<ProductDetail />}
+            />
 
             {/* If no route matches */}
             <Route
