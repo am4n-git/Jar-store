@@ -11,27 +11,32 @@ import * as Mui from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Alert from "@mui/material/Alert";
+import MuiAlert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
-import Slide from "@mui/material/Slide";
 
 function HomePage() {
   // Context functions
   const { cart, dispatch } = useCart();
   const { products, showError, errorMsg } = useProducts();
-  const [showAlert, setShowAlert] = useState(false);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
 
   // add to cart
   function addToCart(item) {
     return new Promise((resolve, reject) => {
       try {
         dispatch({ type: "add_to_cart", payload: item });
-        setShowAlert(true);
+        setShowSuccessAlert(true);
         setTimeout(() => {
-          setShowAlert(false);
+          setShowSuccessAlert(false);
         }, 3000);
-      } catch (error) {}
+      } catch (error) {
+        setShowErrorAlert(true);
+        setTimeout(() => {
+          setShowErrorAlert(false);
+        }, 3000);
+      }
     });
   }
 
@@ -61,14 +66,17 @@ function HomePage() {
       ) : (
         ""
       )}
-      {showAlert ? (
+      {showSuccessAlert || showErrorAlert ? (
         <Stack sx={{ width: "20%" }} spacing={2}>
-          <Snackbar open={showAlert} autoHideDuration={6000}>
-            <Slide direction="up">
-              <Alert severity="success" variant="filled">
-                Added to Cart
-              </Alert>
-            </Slide>
+          <Snackbar open={showSuccessAlert} autoHideDuration={6000}>
+            <MuiAlert elevation={6} severity="success" variant="filled">
+              Added to Cart {}
+            </MuiAlert>
+          </Snackbar>
+          <Snackbar open={showErrorAlert} autoHideDuration={6000}>
+            <MuiAlert elevation={6} severity="error" variant="filled">
+              Something, went wrong !!
+            </MuiAlert>
           </Snackbar>
         </Stack>
       ) : (
