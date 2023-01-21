@@ -1,15 +1,25 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+
+// Components
 import Navbar from "./Components/Navbar";
 import HomePage from "./Components/HomePage";
 import Cart from "./Components/Cart";
 import Login from "./Components/Login";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Paper } from "@mui/material";
-import { useDarkMode } from "./Context/theme-context";
 import ProductDetail from "./Components/ProductDetail";
 import Account from "./Components/Account";
 import RequiresAuth from "./Components/RequiresAuth";
+
+// Context
+import { useDarkMode } from "./Context/theme-context";
+import { useProducts } from "./Context/product-data-context";
+
+// MUI Theme
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Paper } from "@mui/material";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+
 function App() {
   const { darkMode } = useDarkMode();
   const darkTheme = createTheme({
@@ -17,10 +27,21 @@ function App() {
       mode: darkMode ? "dark" : "light",
     },
   });
+  const { loading } = useProducts();
   return (
     <ThemeProvider theme={darkTheme}>
-      <Paper style={{ height: "100%" }}>
+      <Paper elevation={3}>
         <div className="App">
+          {loading ? (
+            <Backdrop
+              open={true}
+              sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            >
+              <CircularProgress color="inherit" />
+            </Backdrop>
+          ) : (
+            ""
+          )}
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
