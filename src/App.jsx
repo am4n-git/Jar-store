@@ -9,17 +9,14 @@ import Login from "./Components/Login";
 import ProductDetail from "./Components/ProductDetail";
 import Account from "./Components/Account";
 import RequiresAuth from "./Components/RequiresAuth";
+import Wishlist from "./Components/Wishlist";
 
 // Context
 import { useDarkMode } from "./Context/theme-context";
-import { useProducts } from "./Context/product-data-context";
 
 // MUI Theme
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Paper } from "@mui/material";
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
-import Wishlist from "./Components/Wishlist";
 
 function App() {
   const { darkMode } = useDarkMode();
@@ -28,21 +25,10 @@ function App() {
       mode: darkMode ? "dark" : "light",
     },
   });
-  const { loading } = useProducts();
   return (
     <ThemeProvider theme={darkTheme}>
       <Paper elevation={3}>
         <div className="App">
-          {loading ? (
-            <Backdrop
-              open={true}
-              sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            >
-              <CircularProgress color="inherit" />
-            </Backdrop>
-          ) : (
-            ""
-          )}
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />

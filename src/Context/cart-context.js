@@ -1,10 +1,13 @@
 import { createContext, useContext, useReducer } from "react";
-
+import { useState } from "react";
 const CartContext = createContext({});
+
 const CartProvider = ({ children, value }) => {
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   function cartHandler(cart, action) {
     switch (action.type) {
       case "add_to_cart":
+        setShowSuccessAlert(true);
         return {
           ...cart,
           items: cart.items.concat(action.payload),
@@ -25,7 +28,9 @@ const CartProvider = ({ children, value }) => {
     total: 0,
   });
   return (
-    <CartContext.Provider value={{ cart, dispatch }}>
+    <CartContext.Provider
+      value={{ cart, dispatch, showSuccessAlert, setShowSuccessAlert }}
+    >
       {children}
     </CartContext.Provider>
   );

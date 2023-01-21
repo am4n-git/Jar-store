@@ -4,6 +4,7 @@ body{
 }
 a{
   text-decoration: none;
+  color: inherit;
 }
 .active{
   color: black;
@@ -71,10 +72,5 @@ a{
   justify-content: center;
   text-align: center;
   align-items: center;
-  margin: 3rem;
-}
-.card{
-  /* height: 250px;
-  width: 150px;
-  border-radius: 10px; */
+  margin: 2rem;
 }
