@@ -3,6 +3,7 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import { useCart } from "../Context/cart-context";
 import { useDarkMode } from "../Context/theme-context";
+import { useAuth } from "../Context/auth-context";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -23,7 +24,7 @@ function Navbar() {
   const { cart } = useCart();
   const { changeTheme } = useDarkMode();
   const [anchorElUser, setAnchorElUser] = useState(null);
-
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -148,7 +149,7 @@ function Navbar() {
                 </MenuItem>
               </Link>
               <Link to="/account">
-                <MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">Account</Typography>
                 </MenuItem>
               </Link>
@@ -160,9 +161,25 @@ function Navbar() {
               >
                 <Typography textAlign="center">Change Theme</Typography>
               </MenuItem>
-              <MenuItem>
-                <Typography textAlign="center">LogOut</Typography>
-              </MenuItem>
+              {!isLoggedIn ? (
+                <Link to="/login">
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">Log in</Typography>
+                  </MenuItem>
+                </Link>
+              ) : (
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                    <span
+                      onClick={() => {
+                        setIsLoggedIn(false);
+                      }}
+                    >
+                      Log out
+                    </span>
+                  </Typography>
+                </MenuItem>
+              )}
             </Menu>
           </Box>
         </Toolbar>
