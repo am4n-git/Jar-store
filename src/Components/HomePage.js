@@ -82,7 +82,6 @@ function HomePage() {
       ) : (
         ""
       )}
-      <Filter />
       {products.map((item, index) => (
         <div key={item._id} className="cardContainer">
           <Mui.Card sx={{ maxWidth: 345 }} className="card">
