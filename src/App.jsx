@@ -19,6 +19,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Paper } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import Wishlist from "./Components/Wishlist";
 
 function App() {
   const { darkMode } = useDarkMode();
@@ -58,6 +59,14 @@ function App() {
             <Route
               path="/product/:name/:productId"
               element={<ProductDetail />}
+            />
+            <Route
+              path="/wishlist"
+              element={
+                <RequiresAuth>
+                  <Wishlist />
+                </RequiresAuth>
+              }
             />
 
             {/* If no route matches */}

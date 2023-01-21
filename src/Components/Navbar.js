@@ -143,14 +143,14 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <Link to="/login">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Profile</Typography>
-                </MenuItem>
-              </Link>
               <Link to="/account">
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">Account</Typography>
+                </MenuItem>
+              </Link>
+              <Link to="/wishlist">
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Wishlist</Typography>
                 </MenuItem>
               </Link>
               <MenuItem
