@@ -12,8 +12,9 @@ import Snackbar from "@mui/material/Snackbar";
 
 function ProductGrid(items) {
   const item = items.props;
-  const { cart, dispatch, setShowSuccessAlert, showSuccessAlert } = useCart();
+  const { cart, dispatch, showSuccessAlert, setShowSuccessAlert } = useCart();
 
+  // add to cart
   function addToCart(item) {
     return new Promise((resolve, reject) => {
       try {

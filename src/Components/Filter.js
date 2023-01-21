@@ -6,7 +6,7 @@ function valuetext(value) {
 }
 
 function Filter() {
-  const { products, setProducts, loading, showError, errorMsg } = useProducts();
+  // const { products, setProducts, loading, showError, errorMsg } = useProducts();
   const [value, setValue] = useState([20, 37]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
