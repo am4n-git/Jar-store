@@ -168,16 +168,13 @@ function Navbar() {
                   </MenuItem>
                 </Link>
               ) : (
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">
-                    <span
-                      onClick={() => {
-                        setIsLoggedIn(false);
-                      }}
-                    >
-                      Log out
-                    </span>
-                  </Typography>
+                <MenuItem
+                  onClick={() => {
+                    setIsLoggedIn(false);
+                    handleCloseUserMenu();
+                  }}
+                >
+                  <Typography textAlign="center">Log out</Typography>
                 </MenuItem>
               )}
             </Menu>
