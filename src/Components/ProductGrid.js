@@ -52,7 +52,10 @@ function ProductGrid(items) {
         </Stack>
       )}
       <div key={item._id}>
-        <Mui.Card sx={{ maxWidth: 345 }} className="card">
+        <Mui.Card
+          sx={{ maxWidth: 250, width: 300, height: 400 }}
+          className="product-card"
+        >
           <Link to={`/product/${item.name}/${item._id}`}>
             <Mui.CardActionArea>
               <Mui.CardMedia
@@ -70,13 +73,13 @@ function ProductGrid(items) {
                   ₹{item.price}
                 </Mui.Typography>
                 <Mui.Typography variant="body2">
-                  Some product description area
+                  {item.description}
                 </Mui.Typography>
               </Mui.CardContent>
             </Mui.CardActionArea>
           </Link>
 
-          <Mui.CardActions>
+          <Mui.CardActions className="product-grid-btn">
             <Mui.Button
               variant="contained"
               startIcon={<AddShoppingCartIcon />}

@@ -36,17 +36,16 @@ function Navbar() {
   // Search Input Bar
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
+    width: "calc(30% - 30px)",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     "&:hover": {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    width: "10%",
     marginRight: theme.spacing(2),
     marginLeft: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
-      width: "auto",
     },
   }));
 

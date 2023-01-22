@@ -74,3 +74,11 @@ a{
   align-items: center;
   margin: 2rem;
 }
+.product-card{
+  display: flex;
+  flex-direction: column;
+}
+.product-grid-btn{
+  margin-top: auto;
+  justify-content: center;
+}
