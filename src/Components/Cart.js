@@ -1,5 +1,7 @@
 import React from "react";
 import { useCart } from "../Context/cart-context";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 function Cart() {
   const { cart, dispatch } = useCart();
   // remove from cart
@@ -23,13 +25,13 @@ function Cart() {
             {cart.items.map((item) => (
               <ul key={item._id}>
                 {item.name} - {item.price}
-                <button
+                <IconButton
                   onClick={() => {
                     removeProduct(item._id);
                   }}
                 >
-                  Remove
-                </button>
+                  <DeleteIcon />
+                </IconButton>
               </ul>
             ))}
           </div>
