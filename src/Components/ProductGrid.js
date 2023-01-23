@@ -53,14 +53,14 @@ function ProductGrid(items) {
       )}
       <div key={item._id}>
         <Mui.Card
-          sx={{ maxWidth: 250, width: 300, height: 400 }}
+          sx={{ maxWidth: 200, width: 300, height: 400 }}
           className="product-card"
         >
           <Link to={`/product/${item.name}/${item._id}`}>
             <Mui.CardActionArea>
               <Mui.CardMedia
                 component="img"
-                height="194"
+                height="150"
                 image={item.image}
                 alt={item.name}
                 style={{ objectFit: "contain" }}
