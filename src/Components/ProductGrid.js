@@ -63,7 +63,7 @@ function ProductGrid(items) {
                 height="150"
                 image={item.image}
                 alt={item.name}
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "fill" }}
               />
               <Mui.CardContent>
                 <Mui.Typography gutterBottom variant="h5" component="div">
@@ -72,7 +72,10 @@ function ProductGrid(items) {
                 <Mui.Typography gutterBottom variant="h6" component="div">
                   ₹{item.price}
                 </Mui.Typography>
-                <Mui.Typography variant="body2">
+                <Mui.Typography
+                  style={{ height: 50, overflow: "auto" }}
+                  variant="body2"
+                >
                   {item.description}
                 </Mui.Typography>
               </Mui.CardContent>

@@ -72,7 +72,7 @@ a{
   justify-content: center;
   text-align: center;
   align-items: center;
-  margin: 2rem;
+  margin: 1rem;
 }
 .product-card{
   display: flex;
@@ -81,4 +81,5 @@ a{
 .product-grid-btn{
   margin-top: auto;
   justify-content: center;
+  margin-bottom: .5rem;
 }
