@@ -8,8 +8,15 @@ function ProductDetail() {
   const { products } = useProducts();
   const product = products.find((item) => item._id === productId);
   return (
-    <Mui.Container sx={{ height: "100vh", marginTop: 5, marginLeft: 0 }}>
-      <img src={product.image} alt={product.name} />
+    <Mui.Container
+      className="product-detail-container"
+      sx={{ height: "100vh", marginTop: 5, marginLeft: 0 }}
+    >
+      <img
+        className="product-detail-img"
+        src={product.image}
+        alt={product.name}
+      />
       <Mui.Typography>{product.name}</Mui.Typography>
       <Mui.Typography>{product.price}</Mui.Typography>
     </Mui.Container>

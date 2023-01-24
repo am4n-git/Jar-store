@@ -83,3 +83,9 @@ a{
   justify-content: center;
   margin-bottom: .5rem;
 }
+.product-detail-container{
+  display: flex;
+}
+.product-detail-img{
+  border-radius: 20px;
+}
