@@ -17,28 +17,42 @@ function Login() {
   }
   return (
     <div className="login-container">
-      <Mui.TextField id="filled-basic" label="Email" variant="filled" />
-      <br />
-      <Mui.TextField
-        id="filled-basic"
-        label="Password"
-        variant="filled"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
-      <br />
-      <Mui.Button
-        onClick={handleLogin}
-        variant="contained"
-        endIcon={<ArrowForwardIosTwoToneIcon />}
-      >
-        Login
-      </Mui.Button>
-      <br />
-      or, <span>Create a Account</span>{" "}
-      <Mui.Button variant="outlined" startIcon={<AccountCircleOutlinedIcon />}>
-        Signup
-      </Mui.Button>
+      <div className="login-fields-container">
+        <Mui.TextField
+          id="filled-basic"
+          label="Email"
+          variant="filled"
+          className="login-fields"
+        />
+        <Mui.TextField
+          id="filled-basic"
+          className="login-fields"
+          label="Password"
+          variant="filled"
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </div>
+      <div className="login-buttons">
+        <Mui.Button
+          onClick={handleLogin}
+          variant="contained"
+          endIcon={<ArrowForwardIosTwoToneIcon />}
+        >
+          Login
+        </Mui.Button>
+      </div>
+      <div className="signup-button">
+        Create a Account
+        <Mui.Button
+          variant="outlined"
+          sx={{ ml: 2 }}
+          startIcon={<AccountCircleOutlinedIcon />}
+        >
+          Signup
+        </Mui.Button>
+      </div>
     </div>
   );
 }

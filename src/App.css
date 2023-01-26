@@ -99,3 +99,34 @@ a{
 .product-detail-img{
   border-radius: 20px;
 }
+.login-container{
+  text-align: center;
+  padding-top: 5rem;
+  height: 100vh;
+}
+.login-fields-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-fields{
+  width: 20rem;
+  margin-top: 2rem !important;
+  transition: 0.5s ease-in-out;
+}
+.login-buttons{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+.signup-button{
+  margin-top: 2rem;
+}
+@media screen and (max-width: 768px) {
+  .login-fields{
+    width:15rem;
+  }
+}
