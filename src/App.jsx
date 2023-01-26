@@ -27,7 +27,7 @@ function App() {
   });
   return (
     <ThemeProvider theme={darkTheme}>
-      <Paper elevation={3}>
+      <Paper elevation={3} sx={{ height: "100%" }}>
         <div className="App">
           <Navbar />
           <Routes>

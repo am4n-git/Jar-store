@@ -20,6 +20,8 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import CartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import Avatar from "@mui/material/Avatar";
+import { green } from "@mui/material/colors";
 function Navbar() {
   const { cart } = useCart();
   const { changeTheme } = useDarkMode();
@@ -66,15 +68,17 @@ function Navbar() {
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
       transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "20ch",
-      },
+      [theme.breakpoints.up("md")]: {},
     },
   }));
   return (
     <AppBar position="sticky">
-      <Container maxWidth="xl">
+      <Container
+        sx={{
+          maxWidth: "100% !important",
+          backdropFilter: "blur(10px) !important",
+        }}
+      >
         <Toolbar disableGutters>
           <Link to="/">
             <IconButton aria-label="Home Page" color="red">
@@ -95,6 +99,15 @@ function Navbar() {
             justifyContent="flex-end"
             sx={{ flexGrow: 1, alignItems: "center", display: { xs: "flex" } }}
           >
+            {isLoggedIn && (
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <Avatar
+                  sx={{ width: 34, height: 34, mr: 2, bgcolor: green[500] }}
+                >
+                  AS
+                </Avatar>
+              </Box>
+            )}
             <Box sx={{ display: { md: "flex" } }}>
               <Link to="/cart">
                 <IconButton
