@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 /* ----------------Context Import----------- */
 import { useProducts } from "../Context/product-data-context";
@@ -14,8 +14,22 @@ import ProductGrid from "./ProductGrid";
 function HomePage() {
   // Context functions
   const { products, loading, showError, errorMsg } = useProducts();
+  const [sortedData, setSortedData] = useState([]);
+  const [sorted, setSorted] = useState(false);
+  function handleSort() {
+    // setSortedData([...products]);
+    setSortedData(
+      [...products].sort((a, b) => {
+        return b.price - a.price;
+      })
+    );
+    setSorted(!sorted);
+  }
   return (
     <div className="home-container">
+      <button onClick={handleSort}>
+        Sort by Price {sorted ? "⬇️" : "⬆️"}{" "}
+      </button>
       {/* Loader */}
       {loading && (
         <Backdrop
@@ -39,9 +53,13 @@ function HomePage() {
         ""
       )}
       {/* Product Card Component */}
-      {products.map((item, index) => (
-        <ProductGrid props={item} key={item._id} />
-      ))}
+      {sorted
+        ? sortedData.map((item, index) => (
+            <ProductGrid props={item} key={item._id} />
+          ))
+        : products.map((item, index) => (
+            <ProductGrid props={item} key={item._id} />
+          ))}
     </div>
   );
 }
