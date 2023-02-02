@@ -81,10 +81,7 @@ function Navbar() {
       >
         <Toolbar disableGutters>
           <Link to="/">
-            <IconButton aria-label="Home Page" color="red">
-              <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-              <Typography textAlign="center">BuyJar</Typography>
-            </IconButton>
+            <Typography textAlign="center">BuyJar</Typography>
           </Link>
           <Search sx={{ display: { xs: "flex" } }}>
             <StyledInputBase
