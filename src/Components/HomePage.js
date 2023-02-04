@@ -35,6 +35,16 @@ function HomePage() {
       >
         Sort LTH
       </button>
+
+      <button
+        onClick={() => {
+          filterDispatch({
+            type: "Price_More_Than_100",
+          });
+        }}
+      >
+        Price more than 10000
+      </button>
       <button
         onClick={() => {
           filterDispatch({

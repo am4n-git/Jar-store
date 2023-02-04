@@ -9,6 +9,7 @@ const FilterProvider = ({ children, value }) => {
   function sortHandler(prod, action) {
     switch (action.type) {
       case "High_To_Low":
+        console.log("prod", prod);
         setProducts(
           [...products].sort((a, b) => {
             return b.price - a.price;
@@ -23,11 +24,15 @@ const FilterProvider = ({ children, value }) => {
           })
         );
         break;
-      case "Clear_All_Filter":
-        window.location.reload(true);
+      case "Price_More_Than_100":
+        setProducts(
+          [...products].filter((a) => {
+            return a.price > 10000;
+          })
+        );
         break;
       default:
-        return;
+        window.location.reload(true);
     }
   }
 
