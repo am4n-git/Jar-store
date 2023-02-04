@@ -9,13 +9,13 @@ function ProductDetail() {
   const { productId } = useParams();
   const { products } = useProducts();
   const product = products.find((item) => item._id === productId);
-  const { cart, dispatch, setShowSuccessAlert } = useCart();
+  const { cart, cartDispatch, setShowSuccessAlert } = useCart();
 
   // add to cart
   function addToCart(item) {
     return new Promise((resolve, reject) => {
       try {
-        dispatch({ type: "add_to_cart", payload: item });
+        cartDispatch({ type: "add_to_cart", payload: item });
         setTimeout(() => {
           setShowSuccessAlert(false);
         }, 3000);
@@ -27,7 +27,7 @@ function ProductDetail() {
   function removeProduct(id) {
     const item = cart.items.find((item) => item._id === id);
     if (!item) return;
-    dispatch({
+    cartDispatch({
       type: "remove_from_cart",
       payload: {
         id: item._id,

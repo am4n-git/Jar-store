@@ -23,13 +23,13 @@ const CartProvider = ({ children, value }) => {
         return cart;
     }
   }
-  const [cart, dispatch] = useReducer(cartHandler, {
+  const [cart, cartDispatch] = useReducer(cartHandler, {
     items: [],
     total: 0,
   });
   return (
     <CartContext.Provider
-      value={{ cart, dispatch, showSuccessAlert, setShowSuccessAlert }}
+      value={{ cart, cartDispatch, showSuccessAlert, setShowSuccessAlert }}
     >
       {children}
     </CartContext.Provider>

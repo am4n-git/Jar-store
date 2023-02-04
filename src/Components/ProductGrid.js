@@ -12,13 +12,13 @@ import Snackbar from "@mui/material/Snackbar";
 
 function ProductGrid(items) {
   const item = items.props;
-  const { cart, dispatch, showSuccessAlert, setShowSuccessAlert } = useCart();
+  const { cart, cartDispatch, showSuccessAlert, setShowSuccessAlert } = useCart();
 
   // add to cart
   function addToCart(item) {
     return new Promise((resolve, reject) => {
       try {
-        dispatch({ type: "add_to_cart", payload: item });
+        cartDispatch({ type: "add_to_cart", payload: item });
         setTimeout(() => {
           setShowSuccessAlert(false);
         }, 3000);
@@ -30,7 +30,7 @@ function ProductGrid(items) {
   function removeProduct(id) {
     const item = cart.items.find((item) => item._id === id);
     if (!item) return;
-    dispatch({
+    cartDispatch({
       type: "remove_from_cart",
       payload: {
         id: item._id,

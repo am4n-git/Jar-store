@@ -3,12 +3,12 @@ import { useCart } from "../Context/cart-context";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 function Cart() {
-  const { cart, dispatch } = useCart();
+  const { cart, cartDispatch } = useCart();
   // remove from cart
   function removeProduct(id) {
     const item = cart.items.find((item) => item._id === id);
     if (!item) return;
-    dispatch({
+    cartDispatch({
       type: "remove_from_cart",
       payload: {
         id: item._id,
