@@ -12,7 +12,7 @@ const FilterProvider = ({ children, value }) => {
     switch (action.type) {
       case "High_To_Low":
         [...products].sort((a, b) => {
-          b.price - a.price;
+          return b.price - a.price;
         });
         break;
       case "Low_To_High":
