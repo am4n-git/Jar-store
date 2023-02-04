@@ -5,7 +5,6 @@ import { useProducts } from "../Context/product-data-context";
 const FilterContext = createContext({});
 
 const FilterProvider = ({ children, value }) => {
-  const [sortedProduct, setSortedProducts] = useState([]);
   const { products, setProducts } = useProducts();
   function sortHandler(prod, action) {
     switch (action.type) {
@@ -18,9 +17,14 @@ const FilterProvider = ({ children, value }) => {
         // setProducts(...sortedProduct);
         break;
       case "Low_To_High":
-        [...products].sort((a, b) => {
-          return a.price - b.price;
-        });
+        setProducts(
+          [...products].sort((a, b) => {
+            return a.price - b.price;
+          })
+        );
+        break;
+      case "Clear_All_Filter":
+        setProducts([...products]);
         break;
       default:
         return;

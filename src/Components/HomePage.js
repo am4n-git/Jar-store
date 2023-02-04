@@ -14,7 +14,7 @@ import ProductGrid from "./ProductGrid";
 function HomePage() {
   // Context functions
   const { products, loading, showError, errorMsg } = useProducts();
-  const { filter, filterDispatch } = useFilter();
+  const { filterDispatch } = useFilter();
   return (
     <div className="home-container">
       <button
@@ -24,7 +24,25 @@ function HomePage() {
           });
         }}
       >
-        Sort
+        Sort HTL
+      </button>
+      <button
+        onClick={() => {
+          filterDispatch({
+            type: "Low_To_High",
+          });
+        }}
+      >
+        Sort LTH
+      </button>
+      <button
+        onClick={() => {
+          filterDispatch({
+            type: "Clear_All_Filter",
+          });
+        }}
+      >
+        Clear All
       </button>
       {/* Loader */}
       {loading && (
