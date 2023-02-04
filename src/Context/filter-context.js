@@ -7,13 +7,15 @@ const FilterContext = createContext({});
 const FilterProvider = ({ children, value }) => {
   const [sortedProduct, setSortedProducts] = useState([]);
   const { products, setProducts } = useProducts();
-
-  function handleSort(products, action) {
+  function sortHandler(prod, action) {
     switch (action.type) {
       case "High_To_Low":
-        [...products].sort((a, b) => {
-          return b.price - a.price;
-        });
+        setProducts(
+          [...products].sort((a, b) => {
+            return b.price - a.price;
+          })
+        );
+        // setProducts(...sortedProduct);
         break;
       case "Low_To_High":
         [...products].sort((a, b) => {
@@ -24,4 +26,14 @@ const FilterProvider = ({ children, value }) => {
         return;
     }
   }
+
+  const [filter, filterDispatch] = useReducer(sortHandler, {});
+  return (
+    <FilterContext.Provider value={{ filter, filterDispatch }}>
+      {children}
+    </FilterContext.Provider>
+  );
 };
+
+const useFilter = () => useContext(FilterContext);
+export { useFilter, FilterProvider };

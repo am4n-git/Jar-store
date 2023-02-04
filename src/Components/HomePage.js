@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 /* ----------------Context Import----------- */
 import { useProducts } from "../Context/product-data-context";
-import Filter from "./Filter";
+import { useFilter } from "../Context/filter-context";
 
 /* ----------------Material UI-------------- */
 import * as Mui from "@mui/material";
@@ -14,20 +14,18 @@ import ProductGrid from "./ProductGrid";
 function HomePage() {
   // Context functions
   const { products, loading, showError, errorMsg } = useProducts();
-  const [sortedData, setSortedData] = useState([]);
-  const [sorted, setSorted] = useState(false);
-  function handleSort() {
-    // setSortedData([...products]);
-    setSortedData(
-      [...products].sort((a, b) => {
-        return b.price - a.price;
-      })
-    );
-    setSorted(!sorted);
-  }
+  const { filter, filterDispatch } = useFilter();
   return (
     <div className="home-container">
-      <button onClick={handleSort}>Sort High to Low</button>
+      <button
+        onClick={() => {
+          filterDispatch({
+            type: "High_To_Low",
+          });
+        }}
+      >
+        Sort
+      </button>
       {/* Loader */}
       {loading && (
         <Backdrop
@@ -51,13 +49,9 @@ function HomePage() {
         ""
       )}
       {/* Product Card Component */}
-      {sorted
-        ? sortedData.map((item, index) => (
-            <ProductGrid props={item} key={item._id} />
-          ))
-        : products.map((item, index) => (
-            <ProductGrid props={item} key={item._id} />
-          ))}
+      {products.map((item, index) => (
+        <ProductGrid props={item} key={item._id} />
+      ))}
     </div>
   );
 }

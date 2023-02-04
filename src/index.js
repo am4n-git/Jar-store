@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import AuthProvider from "./Context/auth-context";
 import { CartProvider } from "./Context/cart-context";
+import { FilterProvider } from "./Context/filter-context";
 import { ProductDataProvider } from "./Context/product-data-context";
 import { DarkThemeProvider } from "./Context/theme-context";
 const root = createRoot(document.getElementById("root"));
@@ -14,7 +15,9 @@ root.render(
         <DarkThemeProvider>
           <ProductDataProvider>
             <CartProvider>
-              <App />
+              <FilterProvider>
+                <App />
+              </FilterProvider>
             </CartProvider>
           </ProductDataProvider>
         </DarkThemeProvider>
