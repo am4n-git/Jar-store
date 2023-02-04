@@ -27,9 +27,7 @@ function HomePage() {
   }
   return (
     <div className="home-container">
-      <button onClick={handleSort}>
-        Sort by Price {sorted ? "⬇️" : "⬆️"}{" "}
-      </button>
+      <button onClick={handleSort}>Sort High to Low</button>
       {/* Loader */}
       {loading && (
         <Backdrop
