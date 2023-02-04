@@ -6,11 +6,11 @@ const FilterContext = createContext({});
 
 const FilterProvider = ({ children, value }) => {
   const { products, setProducts } = useProducts();
-  const [showClearAll, setShowClearAll] = useState(false);
+  const [filterSelected, setFilterSelected] = useState("");
   function sortHandler(prod, action) {
-    setShowClearAll(true);
     switch (action.type) {
       case "High_To_Low":
+        setFilterSelected("High to Low");
         setProducts(
           [...products].sort((a, b) => {
             return b.price - a.price;
@@ -19,16 +19,10 @@ const FilterProvider = ({ children, value }) => {
         // setProducts(...sortedProduct);
         break;
       case "Low_To_High":
+        setFilterSelected("Low to High");
         setProducts(
           [...products].sort((a, b) => {
             return a.price - b.price;
-          })
-        );
-        break;
-      case "Price_More_Than_100":
-        setProducts(
-          [...products].filter((a) => {
-            return a.price > 10000;
           })
         );
         break;
@@ -39,7 +33,7 @@ const FilterProvider = ({ children, value }) => {
 
   const [filter, filterDispatch] = useReducer(sortHandler, {});
   return (
-    <FilterContext.Provider value={{ filter, filterDispatch, showClearAll }}>
+    <FilterContext.Provider value={{ filter, filterDispatch, filterSelected }}>
       {children}
     </FilterContext.Provider>
   );

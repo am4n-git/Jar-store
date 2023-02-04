@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-
+import Filter from "./Filter";
 /* ----------------Context Import----------- */
 import { useProducts } from "../Context/product-data-context";
-import { useFilter } from "../Context/filter-context";
 
 /* ----------------Material UI-------------- */
 import * as Mui from "@mui/material";
@@ -14,49 +13,8 @@ import ProductGrid from "./ProductGrid";
 function HomePage() {
   // Context functions
   const { products, loading, showError, errorMsg } = useProducts();
-  const { filterDispatch, showClearAll } = useFilter();
   return (
     <div className="home-container">
-      <button
-        onClick={() => {
-          filterDispatch({
-            type: "High_To_Low",
-          });
-        }}
-      >
-        Sort HTL
-      </button>
-      <button
-        onClick={() => {
-          filterDispatch({
-            type: "Low_To_High",
-          });
-        }}
-      >
-        Sort LTH
-      </button>
-
-      <button
-        onClick={() => {
-          filterDispatch({
-            type: "Price_More_Than_100",
-          });
-        }}
-      >
-        Price more than 10000
-      </button>
-      {showClearAll && (
-        <button
-          onClick={() => {
-            filterDispatch({
-              type: "Clear_All_Filter",
-            });
-          }}
-        >
-          Clear All
-        </button>
-      )}
-
       {/* Loader */}
       {loading && (
         <Backdrop
@@ -79,6 +37,7 @@ function HomePage() {
       ) : (
         ""
       )}
+      <Filter />
       {/* Product Card Component */}
       {products.map((item, index) => (
         <ProductGrid props={item} key={item._id} />
