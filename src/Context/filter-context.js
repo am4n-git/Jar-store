@@ -6,7 +6,9 @@ const FilterContext = createContext({});
 
 const FilterProvider = ({ children, value }) => {
   const { products, setProducts } = useProducts();
+  const [showClearAll, setShowClearAll] = useState(false);
   function sortHandler(prod, action) {
+    setShowClearAll(true);
     switch (action.type) {
       case "High_To_Low":
         setProducts(
@@ -37,7 +39,7 @@ const FilterProvider = ({ children, value }) => {
 
   const [filter, filterDispatch] = useReducer(sortHandler, {});
   return (
-    <FilterContext.Provider value={{ filter, filterDispatch }}>
+    <FilterContext.Provider value={{ filter, filterDispatch, showClearAll }}>
       {children}
     </FilterContext.Provider>
   );

@@ -14,7 +14,7 @@ import ProductGrid from "./ProductGrid";
 function HomePage() {
   // Context functions
   const { products, loading, showError, errorMsg } = useProducts();
-  const { filterDispatch } = useFilter();
+  const { filterDispatch, showClearAll } = useFilter();
   return (
     <div className="home-container">
       <button
@@ -45,15 +45,18 @@ function HomePage() {
       >
         Price more than 10000
       </button>
-      <button
-        onClick={() => {
-          filterDispatch({
-            type: "Clear_All_Filter",
-          });
-        }}
-      >
-        Clear All
-      </button>
+      {showClearAll && (
+        <button
+          onClick={() => {
+            filterDispatch({
+              type: "Clear_All_Filter",
+            });
+          }}
+        >
+          Clear All
+        </button>
+      )}
+
       {/* Loader */}
       {loading && (
         <Backdrop
