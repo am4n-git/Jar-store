@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useReducer,
-} from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 const ProductsDataContext = createContext({});
 
@@ -32,20 +26,9 @@ const ProductDataProvider = ({ children, value }) => {
       });
   }, []);
 
-  function filterHandler(products, action) {
-    switch (action.type) {
-      case "FILTER_BY_HIGH_TO_LOW_PRICE":
-        return {
-          ...products,
-        };
-      default:
-        return;
-    }
-  }
-  const [product, dispatch] = useReducer(filterHandler, {});
   return (
     <ProductsDataContext.Provider
-      value={{ products, setProducts, loading, showError, errorMsg, dispatch }}
+      value={{ products, setProducts, loading, showError, errorMsg }}
     >
       {children}
     </ProductsDataContext.Provider>
