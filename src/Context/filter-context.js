@@ -24,7 +24,7 @@ const FilterProvider = ({ children, value }) => {
         );
         break;
       case "Clear_All_Filter":
-        setProducts([...products]);
+        window.location.reload(true);
         break;
       default:
         return;
