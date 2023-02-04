@@ -9,7 +9,6 @@ const FilterProvider = ({ children, value }) => {
   function sortHandler(prod, action) {
     switch (action.type) {
       case "High_To_Low":
-        console.log("prod", prod);
         setProducts(
           [...products].sort((a, b) => {
             return b.price - a.price;
