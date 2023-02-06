@@ -17,6 +17,7 @@ import { useDarkMode } from "./Context/theme-context";
 // MUI Theme
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Paper } from "@mui/material";
+import SignUp from "./Components/SignUp";
 
 function App() {
   const { darkMode } = useDarkMode();
@@ -34,6 +35,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route
               path="/account"
               element={
