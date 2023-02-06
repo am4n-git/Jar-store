@@ -13,7 +13,7 @@ function Filter() {
   }
   return (
     <div>
-      <Stack direction="row" spacing={1} sx={{ mt: 1 }}>
+      <Stack direction="row" spacing={1} sx={{ mt: 1, ml: 5 }}>
         <Chip
           label="High to Low"
           variant={filterSelected === "High to Low" ? "filled" : "outlined"}
