@@ -16,18 +16,19 @@ import { useDarkMode } from "./Context/theme-context";
 
 // MUI Theme
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Paper } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
 import SignUp from "./Components/SignUp";
 
 function App() {
   const { darkMode } = useDarkMode();
   const darkTheme = createTheme({
     palette: {
-      mode: darkMode ? "light" : "dark",
+      mode: darkMode ? "dark" : "light",
     },
   });
   return (
     <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <div className="App">
         <Navbar />
         <Routes>
