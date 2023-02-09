@@ -37,6 +37,11 @@ function SignUp() {
         address: [
           {
             houseNo: address[0].houseNo,
+            area: address[0].area,
+            landmark: address[0].landmark,
+            city: address[0].city,
+            state: address[0].state,
+            pincode: address[0].pincode,
           },
         ],
       })
@@ -79,6 +84,84 @@ function SignUp() {
         >
           <Mui.IconButton></Mui.IconButton>
         </Mui.TextField>
+        <Mui.TextField
+          id="house"
+          label="HouseNo."
+          variant="filled"
+          className="login-fields"
+          value={address.houseNo}
+          type="text"
+          onChange={(event) => {
+            const updatedAddress = [...address];
+            updatedAddress[0].houseNo = event.target.value;
+            setAddress(updatedAddress);
+          }}
+        />
+        <Mui.TextField
+          id="area"
+          label="Area."
+          variant="filled"
+          className="login-fields"
+          value={address.area}
+          type="text"
+          onChange={(event) => {
+            const updatedAddress = [...address];
+            updatedAddress[0].area = event.target.value;
+            setAddress(updatedAddress);
+          }}
+        />
+        <Mui.TextField
+          id="landmark"
+          label="Landmark."
+          variant="filled"
+          className="login-fields"
+          value={address.landmark}
+          type="text"
+          onChange={(event) => {
+            const updatedAddress = [...address];
+            updatedAddress[0].landmark = event.target.value;
+            setAddress(updatedAddress);
+          }}
+        />
+        <Mui.TextField
+          id="city"
+          label="City."
+          variant="filled"
+          className="login-fields"
+          value={address.city}
+          type="text"
+          onChange={(event) => {
+            const updatedAddress = [...address];
+            updatedAddress[0].city = event.target.value;
+            setAddress(updatedAddress);
+          }}
+        />
+        <Mui.TextField
+          id="state"
+          label="State."
+          variant="filled"
+          className="login-fields"
+          value={address.state}
+          type="text"
+          onChange={(event) => {
+            const updatedAddress = [...address];
+            updatedAddress[0].state = event.target.value;
+            setAddress(updatedAddress);
+          }}
+        />
+        <Mui.TextField
+          id="pincode"
+          label="Pincode."
+          variant="filled"
+          className="login-fields"
+          value={address.pincode}
+          type="number"
+          onChange={(event) => {
+            const updatedAddress = [...address];
+            updatedAddress[0].pincode = event.target.value;
+            setAddress(updatedAddress);
+          }}
+        />
         <Mui.TextField
           id="house"
           label="HouseNo."
