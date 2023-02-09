@@ -36,7 +36,7 @@ function SignUp() {
         password: password,
         address: [
           {
-            houseNo: address.houseNo,
+            houseNo: address[0].houseNo,
           },
         ],
       })
@@ -86,11 +86,11 @@ function SignUp() {
           className="login-fields"
           value={address.houseNo}
           type="text"
-          onChange={(event) =>
-            setAddress((houseNo) => ({
-              ...address.houseNo,
-            }))
-          }
+          onChange={(event) => {
+            const updatedAddress = [...address];
+            updatedAddress[0].houseNo = event.target.value;
+            setAddress(updatedAddress);
+          }}
         />
       </div>
       <div className="login-buttons">
