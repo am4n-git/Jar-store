@@ -8,6 +8,17 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [address, setAddress] = useState([
+    {
+      houseNo: "",
+      area: "",
+      landmark: "",
+      city: "",
+      state: "",
+      pincode: "",
+      defaultAddress: true,
+    },
+  ]);
   // const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,6 +34,11 @@ function SignUp() {
         fullName: fullName,
         email: email,
         password: password,
+        address: [
+          {
+            houseNo: address.houseNo,
+          },
+        ],
       })
       .then((response) => {
         console.log(response);
@@ -63,6 +79,19 @@ function SignUp() {
         >
           <Mui.IconButton></Mui.IconButton>
         </Mui.TextField>
+        <Mui.TextField
+          id="house"
+          label="HouseNo."
+          variant="filled"
+          className="login-fields"
+          value={address.houseNo}
+          type="text"
+          onChange={(event) =>
+            setAddress((houseNo) => ({
+              ...address.houseNo,
+            }))
+          }
+        />
       </div>
       <div className="login-buttons">
         <Mui.Button
