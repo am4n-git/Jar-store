@@ -35,23 +35,25 @@ function SignUp() {
     <div className="login-container">
       <div className="login-fields-container">
         <Mui.TextField
-          id="filled-basic"
+          id="fullName"
           label="Full Name"
           variant="filled"
           className="login-fields"
           value={fullName}
+          type="text"
           onChange={(event) => setFullName(event.target.value)}
         />
         <Mui.TextField
-          id="filled-basic"
+          id="email"
           label="Email"
+          type="email"
           variant="filled"
           className="login-fields"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
         <Mui.TextField
-          id="filled-basic"
+          id="password"
           className="login-fields"
           label="Password"
           variant="filled"
