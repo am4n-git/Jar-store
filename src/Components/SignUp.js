@@ -162,19 +162,6 @@ function SignUp() {
             setAddress(updatedAddress);
           }}
         />
-        <Mui.TextField
-          id="house"
-          label="HouseNo."
-          variant="filled"
-          className="login-fields"
-          value={address.houseNo}
-          type="text"
-          onChange={(event) => {
-            const updatedAddress = [...address];
-            updatedAddress[0].houseNo = event.target.value;
-            setAddress(updatedAddress);
-          }}
-        />
       </div>
       <div className="login-buttons">
         <Mui.Button

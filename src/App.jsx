@@ -23,52 +23,47 @@ function App() {
   const { darkMode } = useDarkMode();
   const darkTheme = createTheme({
     palette: {
-      mode: darkMode ? "dark" : "light",
+      mode: darkMode ? "light" : "dark",
     },
   });
   return (
     <ThemeProvider theme={darkTheme}>
-      <Paper elevation={3} sx={{ height: "100%" }}>
-        <div className="App">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route
-              path="/account"
-              element={
-                <RequiresAuth>
-                  <Account />
-                </RequiresAuth>
-              }
-            />
-            <Route
-              path="/product/:name/:productId"
-              element={<ProductDetail />}
-            />
-            <Route
-              path="/wishlist"
-              element={
-                <RequiresAuth>
-                  <Wishlist />
-                </RequiresAuth>
-              }
-            />
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/account"
+            element={
+              <RequiresAuth>
+                <Account />
+              </RequiresAuth>
+            }
+          />
+          <Route path="/product/:name/:productId" element={<ProductDetail />} />
+          <Route
+            path="/wishlist"
+            element={
+              <RequiresAuth>
+                <Wishlist />
+              </RequiresAuth>
+            }
+          />
 
-            {/* If no route matches */}
-            <Route
-              path="*"
-              element={
-                <main style={{ padding: "1rem", backgroundColor: "red" }}>
-                  <p>No Page Found!</p>
-                </main>
-              }
-            />
-          </Routes>
-        </div>
-      </Paper>
+          {/* If no route matches */}
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem", backgroundColor: "red" }}>
+                <p>No Page Found!</p>
+              </main>
+            }
+          />
+        </Routes>
+      </div>
     </ThemeProvider>
   );
 }
