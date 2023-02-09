@@ -19,13 +19,14 @@ function Login() {
     <div className="login-container">
       <div className="login-fields-container">
         <Mui.TextField
-          id="filled-basic"
+          id="email"
+          type="email"
           label="Email"
           variant="filled"
           className="login-fields"
         />
         <Mui.TextField
-          id="filled-basic"
+          id="password"
           className="login-fields"
           label="Password"
           variant="filled"
@@ -49,6 +50,7 @@ function Login() {
           variant="outlined"
           sx={{ ml: 2 }}
           startIcon={<AccountCircleOutlinedIcon />}
+          onClick={() => navigate("/signup")}
         >
           Signup
         </Mui.Button>
