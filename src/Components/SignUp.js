@@ -30,7 +30,7 @@ function SignUp() {
 
   function handleSignUp() {
     axios
-      .post("http://localhost:3000/user/create", {
+      .post("https://jar-store-server.vercel.app/user/create", {
         fullName: fullName,
         email: email,
         password: password,
