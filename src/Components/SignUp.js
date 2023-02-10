@@ -47,6 +47,7 @@ function SignUp() {
       })
       .then((response) => {
         console.log(response);
+        setIsLoggedIn(true);
       })
       .catch((error) => {
         console.log("server error", error);
