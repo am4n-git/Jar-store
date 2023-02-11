@@ -87,7 +87,7 @@ function SignUp() {
         </Mui.TextField>
         <Mui.TextField
           id="house"
-          label="HouseNo."
+          label="HouseNo"
           variant="filled"
           className="login-fields"
           value={address.houseNo}
@@ -100,7 +100,7 @@ function SignUp() {
         />
         <Mui.TextField
           id="area"
-          label="Area."
+          label="Area"
           variant="filled"
           className="login-fields"
           value={address.area}
@@ -113,7 +113,7 @@ function SignUp() {
         />
         <Mui.TextField
           id="landmark"
-          label="Landmark."
+          label="Landmark"
           variant="filled"
           className="login-fields"
           value={address.landmark}
@@ -126,7 +126,7 @@ function SignUp() {
         />
         <Mui.TextField
           id="city"
-          label="City."
+          label="City"
           variant="filled"
           className="login-fields"
           value={address.city}
@@ -139,7 +139,7 @@ function SignUp() {
         />
         <Mui.TextField
           id="state"
-          label="State."
+          label="State"
           variant="filled"
           className="login-fields"
           value={address.state}
@@ -152,11 +152,10 @@ function SignUp() {
         />
         <Mui.TextField
           id="pincode"
-          label="Pincode."
+          label="Pincode"
           variant="filled"
           className="login-fields"
           value={address.pincode}
-          type="number"
           onChange={(event) => {
             const updatedAddress = [...address];
             updatedAddress[0].pincode = event.target.value;

@@ -101,26 +101,23 @@ a{
 }
 .login-container{
   text-align: center;
-  padding-top: 5rem;
-  height: 100vh;
+  padding-top: 2rem;
+  margin: auto;
+  width: 80%;
 }
 .login-fields-container{
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 .login-fields{
   width: 20rem;
-  margin-top: 2rem !important;
   transition: 0.5s ease-in-out;
+  margin:1rem !important;
 }
 .login-buttons{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
+  margin:2rem 0 2rem 0;
 }
 .signup-button{
   margin-top: 2rem;
