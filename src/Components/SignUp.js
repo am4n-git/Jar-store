@@ -8,6 +8,11 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [error, setError] = useState({
+    fullName: false,
+    email: false,
+    password: false,
+  });
   const [address, setAddress] = useState([
     {
       houseNo: "",
@@ -63,7 +68,10 @@ function SignUp() {
           className="login-fields"
           value={fullName}
           type="text"
+          required={true}
           onChange={(event) => setFullName(event.target.value)}
+          error={error.fullName}
+          helperText={error.fullName && "Required"}
         />
         <Mui.TextField
           id="email"
@@ -72,7 +80,10 @@ function SignUp() {
           variant="filled"
           className="login-fields"
           value={email}
+          required={true}
           onChange={(event) => setEmail(event.target.value)}
+          error={error.email}
+          helperText={error.email && "Required"}
         />
         <Mui.TextField
           id="password"
@@ -80,11 +91,15 @@ function SignUp() {
           label="Password"
           variant="filled"
           type="password"
+          required={true}
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-        >
-          <Mui.IconButton></Mui.IconButton>
-        </Mui.TextField>
+          error={error.password}
+          helperText={error.password && "Required"}
+        />
+      </div>
+
+      <div className="login-fields-container">
         <Mui.TextField
           id="house"
           label="HouseNo"
