@@ -9,7 +9,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [load, setLoad] = useState(false);
-  const [error, setError] = useState({
+  const [validationError, setValidationError] = useState({
     fullName: false,
     email: false,
     password: false,
@@ -33,33 +33,47 @@ function SignUp() {
   // function showPasswordHandle() {
   //   setShowPassword(true);
   // }
+  console.log(validationError);
+
+  function validateData() {
+    fullName.length === 0 || fullName.length < 3
+      ? setValidationError({ ...validationError, fullName: true })
+      : setValidationError({ ...validationError, fullName: false });
+    email.length === 0 || email.length < 3
+      ? setValidationError({ ...validationError, email: true })
+      : setValidationError({ ...validationError, email: false });
+    password.length === 0 || password.length < 3
+      ? setValidationError({ ...validationError, password: true })
+      : setValidationError({ ...validationError, password: false });
+  }
 
   function handleSignUp() {
-    setLoad(true);
-    axios
-      .post("https://jar-store-server.vercel.app/user/create", {
-        fullName: fullName,
-        email: email,
-        password: password,
-        address: [
-          {
-            houseNo: address[0].houseNo,
-            area: address[0].area,
-            landmark: address[0].landmark,
-            city: address[0].city,
-            state: address[0].state,
-            pincode: address[0].pincode,
-          },
-        ],
-      })
-      .then((response) => {
-        console.log(response);
-        setLoad(false);
-        setIsLoggedIn(true);
-      })
-      .catch((error) => {
-        console.log("server error", error);
-      });
+    validateData();
+    // setLoad(true);
+    // axios
+    //   .post("https://jar-store-server.vercel.app/user/create", {
+    //     fullName: fullName,
+    //     email: email,
+    //     password: password,
+    //     address: [
+    //       {
+    //         houseNo: address[0].houseNo,
+    //         area: address[0].area,
+    //         landmark: address[0].landmark,
+    //         city: address[0].city,
+    //         state: address[0].state,
+    //         pincode: address[0].pincode,
+    //       },
+    //     ],
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //     setLoad(false);
+    //     setIsLoggedIn(true);
+    //   })
+    //   .catch((error) => {
+    //     console.log("server error", error);
+    //   });
   }
   return (
     <div className="login-container">
@@ -79,20 +93,22 @@ function SignUp() {
           type="text"
           required={true}
           onChange={(event) => setFullName(event.target.value)}
-          error={error.fullName}
-          helperText={error.fullName && "Required"}
+          error={validationError.fullName}
+          helperText={
+            validationError.fullName && "Required, enter min. 3 characters"
+          }
         />
         <Mui.TextField
           id="email"
           label="Email"
-          type="email"
           variant="filled"
           className="login-fields"
           value={email}
+          inputProps={{ inputMode: "email" }}
           required={true}
           onChange={(event) => setEmail(event.target.value)}
-          error={error.email}
-          helperText={error.email && "Required"}
+          error={validationError.email}
+          helperText={validationError.email && "Required"}
         />
         <Mui.TextField
           id="password"
@@ -103,8 +119,8 @@ function SignUp() {
           required={true}
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          error={error.password}
-          helperText={error.password && "Required"}
+          error={validationError.password}
+          helperText={validationError.password && "Required"}
         />
       </div>
 
