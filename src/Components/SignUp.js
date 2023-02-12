@@ -30,23 +30,19 @@ function SignUp() {
   const location = useLocation();
   const { setIsLoggedIn } = useAuth();
 
-  // function showPasswordHandle() {
-  //   setShowPassword(true);
-  // }
-  console.log(validationError);
-
   function validateData() {
-    fullName.length === 0 || fullName.length < 3
+    fullName.length === 0
       ? setValidationError({ ...validationError, fullName: true })
       : setValidationError({ ...validationError, fullName: false });
-    email.length === 0 || email.length < 3
+
+    email.length === 0
       ? setValidationError({ ...validationError, email: true })
       : setValidationError({ ...validationError, email: false });
+
     password.length === 0 || password.length < 3
       ? setValidationError({ ...validationError, password: true })
       : setValidationError({ ...validationError, password: false });
   }
-
   function handleSignUp() {
     validateData();
     // setLoad(true);
