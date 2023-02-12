@@ -8,6 +8,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [load, setLoad] = useState(false);
   const [error, setError] = useState({
     fullName: false,
     email: false,
@@ -34,6 +35,7 @@ function SignUp() {
   // }
 
   function handleSignUp() {
+    setLoad(true);
     axios
       .post("https://jar-store-server.vercel.app/user/create", {
         fullName: fullName,
@@ -52,6 +54,7 @@ function SignUp() {
       })
       .then((response) => {
         console.log(response);
+        setLoad(false);
         setIsLoggedIn(true);
       })
       .catch((error) => {
@@ -60,6 +63,12 @@ function SignUp() {
   }
   return (
     <div className="login-container">
+      <Mui.Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={load}
+      >
+        <Mui.CircularProgress color="inherit" />
+      </Mui.Backdrop>
       <div className="login-fields-container">
         <Mui.TextField
           id="fullName"
