@@ -63,9 +63,9 @@ function SignUp() {
         ],
       })
       .then((response) => {
-        console.log(response);
         setLoad(false);
         setIsLoggedIn(true);
+        navigate("/");
       })
       .catch((error) => {
         console.log("server error", error);
