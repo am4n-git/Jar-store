@@ -32,10 +32,9 @@ function SignUp() {
 
   function validateData() {
     setValidationError({
-      ...validationError,
-      password: password.length === 0,
       fullName: fullName.length === 0,
-      email: password.length === 0,
+      email: email.length === 0,
+      password: password.length === 0,
     });
   }
   function handleSignUp() {
@@ -199,6 +198,9 @@ function SignUp() {
           onClick={handleSignUp}
           variant="contained"
           endIcon={<ArrowForwardIosTwoToneIcon />}
+          disabled={
+            fullName.length === 0 || email.length === 0 || password.length < 4
+          }
         >
           Create Account
         </Mui.Button>
