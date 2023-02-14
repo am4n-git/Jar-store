@@ -31,17 +31,12 @@ function SignUp() {
   const { setIsLoggedIn } = useAuth();
 
   function validateData() {
-    fullName.length === 0
-      ? setValidationError({ ...validationError, fullName: true })
-      : setValidationError({ ...validationError, fullName: false });
-
-    email.length === 0
-      ? setValidationError({ ...validationError, email: true })
-      : setValidationError({ ...validationError, email: false });
-
-    password.length === 0 || password.length < 3
-      ? setValidationError({ ...validationError, password: true })
-      : setValidationError({ ...validationError, password: false });
+    setValidationError({
+      ...validationError,
+      password: password.length === 0,
+      fullName: fullName.length === 0,
+      email: password.length === 0,
+    });
   }
   function handleSignUp() {
     validateData();
