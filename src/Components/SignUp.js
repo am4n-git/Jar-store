@@ -45,31 +45,31 @@ function SignUp() {
   }
   function handleSignUp() {
     validateData();
-    // setLoad(true);
-    // axios
-    //   .post("https://jar-store-server.vercel.app/user/create", {
-    //     fullName: fullName,
-    //     email: email,
-    //     password: password,
-    //     address: [
-    //       {
-    //         houseNo: address[0].houseNo,
-    //         area: address[0].area,
-    //         landmark: address[0].landmark,
-    //         city: address[0].city,
-    //         state: address[0].state,
-    //         pincode: address[0].pincode,
-    //       },
-    //     ],
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //     setLoad(false);
-    //     setIsLoggedIn(true);
-    //   })
-    //   .catch((error) => {
-    //     console.log("server error", error);
-    //   });
+    setLoad(true);
+    axios
+      .post("https://jar-store-server.vercel.app/user/create", {
+        fullName: fullName,
+        email: email,
+        password: password,
+        address: [
+          {
+            houseNo: address[0].houseNo,
+            area: address[0].area,
+            landmark: address[0].landmark,
+            city: address[0].city,
+            state: address[0].state,
+            pincode: address[0].pincode,
+          },
+        ],
+      })
+      .then((response) => {
+        console.log(response);
+        setLoad(false);
+        setIsLoggedIn(true);
+      })
+      .catch((error) => {
+        console.log("server error", error);
+      });
   }
   return (
     <div className="login-container">
