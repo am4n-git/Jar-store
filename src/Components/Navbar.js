@@ -200,9 +200,6 @@ function Navbar() {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
           </Search>
         )}
       </Container>
