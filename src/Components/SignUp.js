@@ -11,6 +11,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [load, setLoad] = useState(false);
+  const [signUpError, setSignUpError] = useState("");
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [validationError, setValidationError] = useState({
     fullName: false,
@@ -47,7 +48,7 @@ function SignUp() {
     validateData();
     setLoad(true);
     axios
-      .post("https://jar-store-server.vercel.app/user/create", {
+      .post(`${process.env.REACT_APP_SERVER_URL}/user/create`, {
         fullName: fullName,
         email: email,
         password: password,
@@ -65,9 +66,12 @@ function SignUp() {
       .then((response) => {
         setLoad(false);
         setIsLoggedIn(true);
+        setSignUpError("");
         navigate("/");
       })
       .catch((error) => {
+        setLoad(false);
+        setSignUpError(error.message);
         console.log("server error", error);
       });
   }
@@ -217,6 +221,7 @@ function SignUp() {
           Create Account
         </Mui.Button>
       </div>
+      <h3>{signUpError}</h3>
     </div>
   );
 }

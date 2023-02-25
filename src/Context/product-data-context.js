@@ -8,7 +8,7 @@ const ProductDataProvider = ({ children, value }) => {
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   // Server url
-  const baseUrl = process.env.REACT_APP_SERVER_URL;
+  const baseUrl = `${process.env.REACT_APP_SERVER_URL}/products`;
   // fetch all products intially
   useEffect(() => {
     setLoading(true);
