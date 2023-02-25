@@ -37,16 +37,14 @@ function Navbar() {
   // Search Input Bar
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
-    width: "calc(30% - 30px)",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     "&:hover": {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(2),
+    marginBottom: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
+      dispaly: "none",
     },
   }));
 
@@ -82,15 +80,6 @@ function Navbar() {
           <Link to="/">
             <Typography textAlign="center">BuyJar</Typography>
           </Link>
-          <Search sx={{ display: { xs: "flex" } }}>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-          </Search>
           <Box
             justifyContent="flex-end"
             sx={{ flexGrow: 1, alignItems: "center", display: { xs: "flex" } }}
@@ -188,6 +177,15 @@ function Navbar() {
             </Menu>
           </Box>
         </Toolbar>
+        <Search sx={{ display: { xs: "flex" } }}>
+          <StyledInputBase
+            placeholder="Search…"
+            inputProps={{ "aria-label": "search" }}
+          />
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+        </Search>
       </Container>
     </AppBar>
   );
