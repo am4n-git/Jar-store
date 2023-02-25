@@ -42,10 +42,8 @@ function Navbar() {
     "&:hover": {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    marginBottom: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      dispaly: "none",
-    },
+    [theme.breakpoints.up("sm")]: {},
+    transition: theme.transitions.create("width"),
   }));
 
   const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -80,6 +78,15 @@ function Navbar() {
           <Link to="/">
             <Typography textAlign="center">BuyJar</Typography>
           </Link>
+          <Search sx={{ display: { xs: "none", sm: "flex" }, ml: 2 }}>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+            />
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+          </Search>
           <Box
             justifyContent="flex-end"
             sx={{ flexGrow: 1, alignItems: "center", display: { xs: "flex" } }}
@@ -177,7 +184,7 @@ function Navbar() {
             </Menu>
           </Box>
         </Toolbar>
-        <Search sx={{ display: { xs: "flex" } }}>
+        <Search sx={{ display: { xs: "flex", sm: "none" }, mb: 3 }}>
           <StyledInputBase
             placeholder="Search…"
             inputProps={{ "aria-label": "search" }}
