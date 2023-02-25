@@ -33,6 +33,7 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
   // Search Input Bar
   const Search = styled("div")(({ theme }) => ({
@@ -87,6 +88,15 @@ function Navbar() {
               <SearchIcon />
             </SearchIconWrapper>
           </Search>
+          {/* Search icon to enable search bar in mobile view*/}
+          <SearchIcon
+            sx={{
+              display: { xs: "flex", sm: "none" },
+              ml: 2,
+              cursor: "pointer",
+            }}
+            onClick={() => setShowSearchBar(!showSearchBar)}
+          />
           <Box
             justifyContent="flex-end"
             sx={{ flexGrow: 1, alignItems: "center", display: { xs: "flex" } }}
@@ -184,15 +194,17 @@ function Navbar() {
             </Menu>
           </Box>
         </Toolbar>
-        <Search sx={{ display: { xs: "flex", sm: "none" }, mb: 3 }}>
-          <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ "aria-label": "search" }}
-          />
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-        </Search>
+        {showSearchBar && (
+          <Search sx={{ display: { xs: "flex", sm: "none" }, mb: 2 }}>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+            />
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+          </Search>
+        )}
       </Container>
     </AppBar>
   );
