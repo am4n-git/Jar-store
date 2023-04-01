@@ -182,7 +182,7 @@ function Navbar() {
                 }}
               >
                 <Typography textAlign="center">
-                  Change Language to {language === "en" ? "Spanish" : "English"}
+                  Change Language to {language === "en" ? "Hindi" : "English"}
                 </Typography>
               </MenuItem>
               {!isLoggedIn ? (

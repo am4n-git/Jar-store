@@ -9,7 +9,7 @@ const DarkThemeProvider = ({ children, value }) => {
     setDarkMode(!darkMode);
   }
   function changeLanguage() {
-    setLanguage(language === "en" ? language === "es" : "en");
+    setLanguage(language === "en" ? language === "hi" : "en");
   }
   return (
     <DarkThemeContext.Provider

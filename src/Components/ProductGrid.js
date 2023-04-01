@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../Context/cart-context";
 import en from "../Data/en.json";
-import es from "../Data/es.json";
+import hi from "../Data/hi.json";
 import { useDarkMode } from "../Context/theme-context";
 /* ----------------Material UI-------------- */
 import * as Mui from "@mui/material";
@@ -14,7 +14,7 @@ import Snackbar from "@mui/material/Snackbar";
 
 function ProductGrid(items) {
   const { language } = useDarkMode();
-  const lang = language === "en" ? en : es;
+  const lang = language === "en" ? en : hi;
   const item = items.props;
   const { cart, cartDispatch, showSuccessAlert, setShowSuccessAlert } =
     useCart();

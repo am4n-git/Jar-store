@@ -4,12 +4,18 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useProducts } from "../Context/product-data-context";
 import { useCart } from "../Context/cart-context";
+import { useDarkMode } from "../Context/theme-context";
+
+import en from "../Data/en.json";
+import hi from "../Data/hi.json";
 
 function ProductDetail() {
   const { productId } = useParams();
   const { products } = useProducts();
   const product = products.find((item) => item._id === productId);
   const { cart, cartDispatch, setShowSuccessAlert } = useCart();
+  const { language } = useDarkMode();
+  const lang = language === "en" ? en : hi;
 
   // add to cart
   function addToCart(item) {
@@ -51,7 +57,7 @@ function ProductDetail() {
       <Mui.Typography>{product.price}</Mui.Typography>
       <Mui.CardActions className="product-grid-btn">
         <Mui.Button variant="contained" onClick={() => addToCart(product)}>
-          Add
+          {lang.add}
         </Mui.Button>
         {cart.items.includes(product) && (
           <Mui.Button
@@ -60,7 +66,7 @@ function ProductDetail() {
               removeProduct(product._id);
             }}
           >
-            Remove
+            {lang.remove}
           </Mui.Button>
         )}
       </Mui.CardActions>
