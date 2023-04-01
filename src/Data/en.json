@@ -1,6 +1,8 @@
 {
     "add": "Add",
     "remove": "Remove",
-    "select": "Select"
+    "select": "Select",
+    "high_to_low": "High to low",
+    "low_to_high": "Low to high"
   }
   

@@ -21,6 +21,10 @@ import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Avatar from "@mui/material/Avatar";
 import { green } from "@mui/material/colors";
+
+import en from "../Data/en.json";
+import hi from "../Data/hi.json";
+
 function Navbar() {
   const { cart } = useCart();
   const { changeTheme, changeLanguage, language } = useDarkMode();
@@ -29,6 +33,7 @@ function Navbar() {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
