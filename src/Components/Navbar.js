@@ -23,7 +23,7 @@ import Avatar from "@mui/material/Avatar";
 import { green } from "@mui/material/colors";
 function Navbar() {
   const { cart } = useCart();
-  const { changeTheme } = useDarkMode();
+  const { changeTheme, changeLanguage, language } = useDarkMode();
   const [anchorElUser, setAnchorElUser] = useState(null);
   const { isLoggedIn, setIsLoggedIn } = useAuth();
   const handleOpenUserMenu = (event) => {
@@ -174,6 +174,16 @@ function Navbar() {
                 }}
               >
                 <Typography textAlign="center">Change Theme</Typography>
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  changeLanguage();
+                  handleCloseUserMenu();
+                }}
+              >
+                <Typography textAlign="center">
+                  Change Language to {language === "en" ? "Spanish" : "English"}
+                </Typography>
               </MenuItem>
               {!isLoggedIn ? (
                 <Link to="/login">
