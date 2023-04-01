@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../Context/cart-context";
+import en from "../Data/en.json";
+import es from "../Data/es.json";
 
 /* ----------------Material UI-------------- */
 import * as Mui from "@mui/material";
@@ -11,6 +13,7 @@ import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 
 function ProductGrid(items) {
+  const lang = en;
   const item = items.props;
   const { cart, cartDispatch, showSuccessAlert, setShowSuccessAlert } =
     useCart();
@@ -89,7 +92,7 @@ function ProductGrid(items) {
               startIcon={<AddShoppingCartIcon />}
               onClick={() => addToCart(item)}
             >
-              Add
+              {lang.add}
             </Mui.Button>
             {cart.items.includes(item) && (
               <Mui.Button
@@ -99,7 +102,7 @@ function ProductGrid(items) {
                   removeProduct(item._id);
                 }}
               >
-                Remove
+                {lang.remove}
               </Mui.Button>
             )}
           </Mui.CardActions>
