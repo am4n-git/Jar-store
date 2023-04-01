@@ -53,14 +53,16 @@ function ProductDetail() {
         <Mui.Button variant="contained" onClick={() => addToCart(product)}>
           Add
         </Mui.Button>
-        <Mui.Button
-          variant="outlined"
-          onClick={() => {
-            removeProduct(product._id);
-          }}
-        >
-          Remove
-        </Mui.Button>
+        {cart.items.includes(product) && (
+          <Mui.Button
+            variant="outlined"
+            onClick={() => {
+              removeProduct(product._id);
+            }}
+          >
+            Remove
+          </Mui.Button>
+        )}
       </Mui.CardActions>
     </Mui.Container>
   );
